@@ -36,11 +36,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Product, Variation, Size, Color, Image } = sequelize.models;
+const { Product, Variation, Size, Color, Image, Category } = sequelize.models;
 
 // Aca vendrian las relaciones
 Product.hasMany(Variation, { as: "variations", onDelete: "cascade", onUpdate: "cascade" });
 Variation.belongsTo(Product, { as: "product", onDelete: "cascade", onUpdate: "cascade", foreignKey: "productId" });
+
+Product.belongsToMany(Category, { through: "product_category", as: "categories", foreignKey: "productId" });
+Category.belongsToMany(Product, { through: "product_category", as: "products", foreignKey: "categoryId" });
 
 Variation.belongsTo(Size, { as: "size", onDelete: "cascade", onUpdate: "cascade", foreignKey: "sizeId" });
 Size.hasMany(Variation, { as: "variations", onDelete: "cascade", onUpdate: "cascade" });
@@ -53,6 +56,10 @@ Image.belongsToMany(Product, { through: "product_image", as: "products", foreign
 
 Variation.belongsToMany(Image, { through: "variation_image", as: "images", foreignKey: "variationId" });
 Image.belongsToMany(Variation, { through: "variation_image", as: "variations", foreignKey: "imageId" });
+
+Category.belongsTo(Category, { as: "parent", onDelete: "cascade", onUpdate: "cascade", foreignKey: "parentId" });
+Category.hasMany(Category, { as: "children", onDelete: "cascade", onUpdate: "cascade" });
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
