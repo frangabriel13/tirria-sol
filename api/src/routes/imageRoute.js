@@ -26,9 +26,36 @@ router.post('/', upload.array('images', 5), async (req, res) => {
   }
 })
 
-router.put('/:id', async (req, res) => {});
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { url } = req.body;
+//     const image = await Image.findByPk(id);
+//     if(!image) return res.status(404).json({ message: 'Imagen no encontrada' });
+//     await cloudinary.uploader.destroy(image.url);
+//     await cloudinary.uploader.upload(url, { folder: 'tirria' });
+//     await image.update({ url });
+//     res.status(200).json(image);
+//   } catch(error) {
+//     res.status(500).json({ message: 'Error en el servidor', error });
+//   }
+// });
 
-router.delete('/:id', async (req, res) => {});
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const image = await Image.findByPk(id);
+    if(!image) return res.status(404).json({ message: 'Imagen no encontrada' });
+    
+    const publicId = `tirria/${image.url.split('/').slice(-1)[0].split('.')[0]}`;
+    console.log(publicId)
+    await cloudinary.uploader.destroy(publicId);
+    await image.destroy();
+    res.status(200).json({ message: 'Imagen eliminada' });
+  } catch(error) {
+    res.status(500).json({ message: 'Error en el servidor', error });
+  }
+});
 
 
 module.exports = router;
