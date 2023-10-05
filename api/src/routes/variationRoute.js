@@ -9,15 +9,23 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Size,
+          as: 'size',
+          attributes: ['id', 'name'],
         },
         {
           model: Color,
+          as: 'color',
+          attributes: ['id', 'name'],
         },
         {
           model: Image,
+          as: 'images',
+          attributes: ['id', 'url'],
         },
         {
           model: Product,
+          as: 'product',
+          attributes: ['id', 'name'],
         },
       ],
     });
@@ -34,15 +42,23 @@ router.get('/:id', async (req, res) => {
       include: [
         {
           model: Size,
+          as: 'size',
+          attributes: ['id', 'name'],
         },
         {
           model: Color,
+          as: 'color',
+          attributes: ['id', 'name'],
         },
         {
           model: Image,
+          as: 'images',
+          attributes: ['id', 'url'],
         },
         {
           model: Product,
+          as: 'product',
+          attributes: ['id', 'name'],
         },
       ],
     });

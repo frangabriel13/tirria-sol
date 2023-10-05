@@ -42,8 +42,8 @@ const { Product, Variation, Size, Color, Image, Category } = sequelize.models;
 Product.hasMany(Variation, { as: "variations", onDelete: "cascade", onUpdate: "cascade" });
 Variation.belongsTo(Product, { as: "product", onDelete: "cascade", onUpdate: "cascade", foreignKey: "productId" });
 
-Product.belongsToMany(Category, { through: "product_category", as: "categories", foreignKey: "productId" });
-Category.belongsToMany(Product, { through: "product_category", as: "products", foreignKey: "categoryId" });
+Product.belongsToMany(Category, { through: "product_category", as: "categories", foreignKey: "productId", onDelete: "cascade", onUpdate: "cascade" });
+Category.belongsToMany(Product, { through: "product_category", as: "products", foreignKey: "categoryId", onDelete: "cascade", onUpdate: "cascade" });
 
 Variation.belongsTo(Size, { as: "size", onDelete: "cascade", onUpdate: "cascade", foreignKey: "sizeId" });
 Size.hasMany(Variation, { as: "variations", onDelete: "cascade", onUpdate: "cascade" });
@@ -51,11 +51,11 @@ Size.hasMany(Variation, { as: "variations", onDelete: "cascade", onUpdate: "casc
 Variation.belongsTo(Color, { as: "color", onDelete: "cascade", onUpdate: "cascade", foreignKey: "colorId" });
 Color.hasMany(Variation, { as: "variations", onDelete: "cascade", onUpdate: "cascade" });
 
-Product.belongsToMany(Image, { through: "product_image", as: "images", foreignKey: "productId" });
-Image.belongsToMany(Product, { through: "product_image", as: "products", foreignKey: "imageId" });
+Product.belongsToMany(Image, { through: "product_image", as: "images", foreignKey: "productId", onDelete: "cascade", onUpdate: "cascade" });
+Image.belongsToMany(Product, { through: "product_image", as: "products", foreignKey: "imageId", onDelete: "cascade", onUpdate: "cascade" });
 
-Variation.belongsToMany(Image, { through: "variation_image", as: "images", foreignKey: "variationId" });
-Image.belongsToMany(Variation, { through: "variation_image", as: "variations", foreignKey: "imageId" });
+Variation.belongsToMany(Image, { through: "variation_image", as: "images", foreignKey: "variationId", onDelete: "cascade", onUpdate: "cascade" });
+Image.belongsToMany(Variation, { through: "variation_image", as: "variations", foreignKey: "imageId", onDelete: "cascade", onUpdate: "cascade" });
 
 Category.belongsTo(Category, { as: "parent", onDelete: "cascade", onUpdate: "cascade", foreignKey: "parentId" });
 Category.hasMany(Category, { as: "children", onDelete: "cascade", onUpdate: "cascade" });
