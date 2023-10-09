@@ -5,48 +5,51 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <div className={s.container}>
-      <div className={s.toHome}>
-        <Link to="/home">
-          <i className="bi bi-house">
-            <span>Inicio</span>
-          </i>
-        </Link>
-      </div>
+      <Link to="/">
+        <div className={s.toHome}>
+          <i className="bi bi-house"></i>
+        </div>
+      </Link>
       <nav className={s.divNav}>
         <ul className={s.navBar}>
           <li>
             <Link to="/dashboard">
-              <i className="bi bi-bar-chart-line">
+              <div className={s.divItem}>
+                <i className="bi bi-bar-chart-line"></i>
                 <span>General</span>
-              </i>
+              </div>
             </Link>
           </li>
           <li>
             <Link to="/dashboard/productos">
-              <i className="bi bi-box">
+              <div className={s.divItem}>
+                <i className="bi bi-box"></i>
                 <span>Productos</span>
-              </i>
+              </div>
             </Link>
           </li>
           <li>
             <Link to="/dashboard/configuracion">
-              <i className="bi bi-gear">
+              <div className={s.divItem}>
+                <i className="bi bi-gear"></i>
                 <span>Configuración</span>
-              </i>
+              </div>
             </Link>
           </li>
           <li>
             <Link to="/dashboard/galeria">
-              <i className="bi bi-images">
+              <div className={s.divItem}>
+                <i className="bi bi-images"></i>
                 <span>Galería</span>
-              </i>
+              </div>
             </Link>
           </li>
           <li>
             <Link to="/dashboard/personalizar">
-              <i className="bi bi-palette">
+              <div className={s.divItem}>
+                <i className="bi bi-palette"></i>
                 <span>Personalizar</span>
-              </i>
+              </div>
             </Link>
           </li>
         </ul>
