@@ -1,5 +1,51 @@
 .container {
-  position: sticky;
-  background-color: antiquewhite;
+  background-color: #332568;
   height: 100vh;
+  position: sticky;
+}
+
+.toHome {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.toHome i {
+  color: #ffffff;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  border: .1rem solid #ffffff;
+  border-radius: 50%;
+  text-align: center;
+  transition: .4s;
+}
+
+.toHome i:hover {
+  /* background-position: -100% 0; */
+  background-color: #ffffff;
+  color: #332568;
+  border: .1rem solid #ffffff;
+}
+
+.navBar a {
+  display: block;
+  padding: 1rem 2rem;
+  transition: background-color 0.3s;
+}
+
+.navBar a:hover {
+  background-color: #3f2e7c;
+}
+
+.divItem {
+  display: flex;
+  gap: 1rem;
+}
+
+.divItem i, .divItem span {
+  color: #ffffff;
+  font-size: 1.5rem;
 }
