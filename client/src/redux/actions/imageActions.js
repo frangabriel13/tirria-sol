@@ -2,7 +2,7 @@ import { instance, imageInstance } from "../../utils/axiosConfig";
 
 export const getImages = () => async (dispatch) => {
   try {
-    const response = await instance.get('/image');
+    const response = await instance.get('/images');
     dispatch({ 
       type: 'GET_IMAGES', 
       payload: response.data 
@@ -14,9 +14,10 @@ export const getImages = () => async (dispatch) => {
 
 export const createImage = (images) => async (dispatch) => {
   try {
+    console.log(images)
     const formData = new FormData();
     images.forEach(image => formData.append('images', image));
-    const response = await imageInstance.post('/image', formData);
+    const response = await imageInstance.post('/images', formData);
     dispatch({ 
       type: 'CREATE_IMAGE', 
       payload: response.data 
@@ -28,7 +29,7 @@ export const createImage = (images) => async (dispatch) => {
 
 export const deleteImage = (id) => async (dispatch) => {
   try {
-    await instance.delete(`/image/${id}`);
+    await instance.delete(`/images/${id}`);
     dispatch({ 
       type: 'DELETE_IMAGE', 
       payload: id 
