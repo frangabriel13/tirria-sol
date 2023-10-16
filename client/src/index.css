@@ -7,7 +7,7 @@
   text-decoration: none;
   font-family: 'PT Sans Narrow', sans-serif;
   
-  /* border: none; */
+  border: none;
   outline: none;
   scroll-behavior: smooth;
 }
