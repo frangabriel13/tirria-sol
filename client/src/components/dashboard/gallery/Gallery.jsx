@@ -13,6 +13,10 @@ const Gallery = () => {
     dispatch(getImages());
   }, []);
 
+  const handleDelete = (id) => {
+    dispatch(deleteImage(id));
+  };
+
   return (
     <div className={s.container}>
       <div className={s.divTitle}>
@@ -20,6 +24,16 @@ const Gallery = () => {
         <button onClick={() => setShowForm(!showForm)}>Agregar</button>
         {
           showForm && <ImageForm setShowForm={setShowForm} />
+        }
+      </div>
+      <div className={s.divImages}>
+        {
+          images.map((el) => (
+            <div key={el.id} className={s.divImage}>
+              <img src={el.url} alt={el.name} />
+              <button onClick={() => handleDelete(el.id)}>Eliminar</button>
+            </div>
+          ))
         }
       </div>
     </div>
