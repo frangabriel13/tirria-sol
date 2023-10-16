@@ -1,0 +1,51 @@
+.container {
+  padding: .5rem 1rem;
+}
+
+.divTitle {
+  display: flex;
+  align-items: center;
+  padding-bottom: .5rem;
+}
+
+.divTitle h2 {
+  font-size: 2rem;
+}
+
+.divTitle button {
+  font-size: 1.7rem;
+  margin-left: 1rem;
+  background-color: #332568;
+  color: #ffffff;
+  border-radius: .4rem;
+  padding: .5rem 1rem;
+  transition: background-color .3s;
+  cursor: pointer;
+}
+
+.divTitle button:hover {
+  background-color: #3f2e7c;
+}
+
+.divImages {
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-gap: .5rem;
+  justify-content: space-evenly;
+}
+
+.divImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: .1rem solid #ccc;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.divImage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}

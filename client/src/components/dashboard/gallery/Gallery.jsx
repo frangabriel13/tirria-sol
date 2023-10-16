@@ -22,16 +22,16 @@ const Gallery = () => {
       <div className={s.divTitle}>
         <h2>Galería de imágenes</h2>
         <button onClick={() => setShowForm(!showForm)}>Agregar</button>
-        {
-          showForm && <ImageForm setShowForm={setShowForm} />
-        }
       </div>
+      {
+        showForm && <ImageForm setShowForm={setShowForm} />
+      }
       <div className={s.divImages}>
         {
           images.map((el) => (
             <div key={el.id} className={s.divImage}>
               <img src={el.url} alt={el.name} />
-              <button onClick={() => handleDelete(el.id)}>Eliminar</button>
+              {/* <button onClick={() => handleDelete(el.id)}>Eliminar</button> */}
             </div>
           ))
         }
