@@ -62,7 +62,8 @@
 
 .divImages {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(10, 1fr);
+  /* grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); */
   grid-gap: .5rem;
   justify-content: space-evenly;
   padding: 1rem 0;
