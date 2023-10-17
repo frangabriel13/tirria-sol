@@ -27,6 +27,39 @@
   background-color: #3f2e7c;
 }
 
+.divSelectedImages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  background-color: #332568;
+  border-radius: .4rem;
+}
+
+.divSelectedImages h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  padding: 1rem 0;
+}
+
+.divActionImg {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+  transition: color .3s;
+}
+
+.divActionImg i {
+  cursor: pointer;
+  transition: color .3s;
+  padding: 1rem 1rem;
+}
+
+.divActionImg i:hover {
+  background-color: #3f2e7c;
+}
+
 .divImages {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
@@ -42,6 +75,11 @@
   background-color: #000000;
   border-radius: .4rem;
   /* overflow: hidden; */
+}
+
+.selected {
+  border: .2rem solid #332568; 
+  box-shadow: 0 0 .5rem #332568;
 }
 
 .divImage img {
