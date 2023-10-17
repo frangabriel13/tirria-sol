@@ -27,8 +27,10 @@ const ImageForm = ({ setShowForm }) => {
       <h3>Subir imágenes</h3>
       <form className={s.form} onSubmit={handleSubmit}>
         <input className={s.input} type="file" name="images" onChange={handleImages} multiple />
-        <button type="button" onClick={() => setShowForm(false)}>Cancelar</button>
-        <button type="submit">Subir</button>
+        <div className={s.btns}>
+          <button className={s.btnCancel} type="button" onClick={() => setShowForm(false)}>Cancelar</button>
+          <button className={s.btnSubmit} type="submit">Subir</button>
+        </div>
       </form>
     </div>
   )
