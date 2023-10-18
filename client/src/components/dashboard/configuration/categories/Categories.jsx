@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Categories.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const Categories = () => {
   return (
