@@ -41,13 +41,61 @@ const Categories = () => {
             >Subcategorías</li>
           </ul>
         </div>
-        {
-          tab === 0 && (
-            <p>Categorías seleccionadas</p>
-          ) || tab === 1 && (
-            <p>Subcategorías seleccionadas</p>
-          )
-        }
+        <div className={s.divTable}>
+          {
+            tab === 0 && (
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    categories.map((category, index) => (
+                      category.parents.length === 0 && (
+                        <tr key={index}>
+                          <td>{category.id}</td>
+                          <td>{category.name}</td>
+                          <td>
+                            <button>Editar</button>
+                            <button>Eliminar</button>
+                          </td>
+                        </tr>
+                      )
+                    ))
+                  }
+                </tbody>
+              </table>
+            ) || tab === 1 && (
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    categories.map((category, index) => (
+                      category.parents.length > 0 && (
+                        <tr key={index}>
+                          <td>{category.id}</td>
+                          <td>{category.name}</td>
+                          <td>
+                            <button>Editar</button>
+                            <button>Eliminar</button>
+                          </td>
+                        </tr>
+                      )
+                    ))
+                  }
+                </tbody>
+              </table>
+            )
+          }
+        </div>
       </div>
     </div>
   );
