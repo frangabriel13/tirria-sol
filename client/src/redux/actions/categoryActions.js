@@ -47,3 +47,10 @@ export const deleteCategory = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const filterSubcategories = (id) => {
+  return {
+    type: 'FILTER_SUBCATEGORIES',
+    payload: id
+  };
+}
