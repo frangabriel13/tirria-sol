@@ -26,7 +26,23 @@ function categoryReducer(state = initialState, action) {
         ...state,
         categories: state.categories.filter(category => category.id !== action.payload)
       };
-    default:
+    case 'FILTER_SUBCATEGORIES':
+      const targetId = parseInt(action.payload, 10);
+
+      if (targetId === 0) {
+        return {
+          ...state,
+          categories: state.allCategories.filter(category => category.parents.length > 0),
+        };
+      } else {
+        return {
+          ...state,
+          categories: state.allCategories.filter(category => 
+            category.parents.some(parent => parent.id === targetId)
+          ),
+        };
+      }
+    default: 
       return state;
   }
 }

@@ -5,7 +5,8 @@ import {
   getCategories,
   createCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
+  filterSubcategories,
 } from '../../../../redux/actions/categoryActions';
 
 const Categories = () => {
@@ -21,6 +22,10 @@ const Categories = () => {
 
   const handleTabChange = (e) => {
     setTab(e.target.value);
+  };
+
+  const handleFilterSubcategories = (id) => {
+    dispatch(filterSubcategories(id));
   };
 
   return (
@@ -53,7 +58,7 @@ const Categories = () => {
                 </thead>
                 <tbody>
                   {
-                    categories.map((category, index) => (
+                    allCategories.map((category, index) => (
                       category.parents.length === 0 && (
                         <tr key={index}>
                           <td>{category.id}</td>
@@ -69,30 +74,44 @@ const Categories = () => {
                 </tbody>
               </table>
             ) || tab === 1 && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <div>
+                <select
+                  onChange={(e) => handleFilterSubcategories(e.target.value)}
+                >
+                  <option value="0">Seleccione una categoría</option>
                   {
-                    categories.map((category, index) => (
-                      category.parents.length > 0 && (
-                        <tr key={index}>
-                          <td>{category.id}</td>
-                          <td>{category.name}</td>
-                          <td>
-                            <button>Editar</button>
-                            <button>Eliminar</button>
-                          </td>
-                        </tr>
+                    allCategories.map((category, index) => (
+                      category.parents.length === 0 && (
+                        <option key={index} value={category.id}>{category.name}</option>
                       )
                     ))
                   }
-                </tbody>
-              </table>
+                </select>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      categories.map((category, index) => (
+                        category.parents.length > 0 && (
+                          <tr key={index}>
+                            <td>{category.id}</td>
+                            <td>{category.name}</td>
+                            <td>
+                              <button>Editar</button>
+                              <button>Eliminar</button>
+                            </td>
+                          </tr>
+                        )
+                      ))
+                    }
+                  </tbody>
+                </table>
+              </div>
             )
           }
         </div>
