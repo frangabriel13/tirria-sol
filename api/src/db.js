@@ -57,8 +57,14 @@ Image.belongsToMany(Product, { through: "product_image", as: "products", foreign
 Variation.belongsToMany(Image, { through: "variation_image", as: "images", foreignKey: "variationId", onDelete: "cascade", onUpdate: "cascade" });
 Image.belongsToMany(Variation, { through: "variation_image", as: "variations", foreignKey: "imageId", onDelete: "cascade", onUpdate: "cascade" });
 
-Category.belongsTo(Category, { as: "parent", onDelete: "cascade", onUpdate: "cascade", foreignKey: "parentId" });
-Category.hasMany(Category, { as: "children", onDelete: "cascade", onUpdate: "cascade" });
+Category.belongsToMany(
+  Category,
+  { through: "category_parent", as: "children", foreignKey: "parentId", onDelete: "cascade", onUpdate: "cascade" }
+);
+Category.belongsToMany(
+  Category,
+  { through: "category_parent", as: "parents", foreignKey: "categoryId", onDelete: "cascade", onUpdate: "cascade" }
+);
 
 
 module.exports = {
