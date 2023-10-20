@@ -14,6 +14,7 @@ const Categories = () => {
   const categories = useSelector(state => state.category.categories);
   const allCategories = useSelector(state => state.category.allCategories);
   const [tab, setTab] = useState(0);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -116,6 +117,62 @@ const Categories = () => {
           }
         </div>
       </div>
+      {
+        editMode ? (
+          <div className={s.divForm}>
+            <h3>Editar categoría</h3>
+            <form>
+              <div className={s.divName}>
+                <label>Nombre</label>
+                <input type="text" placeholder="Nombre" />
+              </div>
+              <div className={s.divParent}>
+                <label>Categoría padre</label>
+                <select>
+                  <option value="0">Seleccione una categoría</option>
+                  {
+                    allCategories.map((category, index) => (
+                      // category.parents.length === 0 && (
+                        <option key={index} value={category.id}>{category.name}</option>
+                      // )
+                    ))
+                  }
+                </select>
+              </div>
+              <div className={s.divBtns}>
+                <button>Cancelar</button>
+                <button>Guardar</button>
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div>
+            <h3>Crear categoría</h3>
+            <form>
+              <div className={s.divName}>
+                <label>Nombre</label>
+                <input type="text" placeholder="Nombre" />
+              </div>
+              <div className={s.divParent}>
+                <label>Categoría padre</label>
+                <select>
+                  <option value="0">Seleccione una categoría</option>
+                  {
+                    allCategories.map((category, index) => (
+                      // category.parents.length === 0 && (
+                        <option key={index} value={category.id}>{category.name}</option>
+                      // )
+                    ))
+                  }
+                </select>
+              </div>
+              <div className={s.divBtns}>
+                <button>Agregar</button>
+              </div>
+            </form>
+          </div>
+        )
+      }
     </div>
   );
 };
