@@ -15,6 +15,12 @@ const Categories = () => {
   const allCategories = useSelector(state => state.category.allCategories);
   const [tab, setTab] = useState(0);
   const [editMode, setEditMode] = useState(false);
+  const [category, setCategory] = useState({
+    id: "",
+    name: "",
+    parents: [],
+    children: [],
+  });
 
   useEffect(() => {
     dispatch(getCategories());
@@ -28,6 +34,23 @@ const Categories = () => {
   const handleFilterSubcategories = (id) => {
     dispatch(filterSubcategories(id));
   };
+
+  const handleEditMode = (id) => {
+    const categoryToEdit = categories.find(el => el.id === id);
+    setCategory(categoryToEdit);
+    setEditMode(true);
+  };
+
+  const handleCancelEdit = () => {
+    setEditMode(false);
+    setCategory({
+      id: "",
+      name: "",
+      parents: [],
+    });
+  };
+
+  console.log(category)
 
   return (
     <div className={s.container}>
@@ -59,13 +82,13 @@ const Categories = () => {
                 </thead>
                 <tbody>
                   {
-                    allCategories.map((category, index) => (
-                      category.parents.length === 0 && (
-                        <tr key={index}>
-                          <td>{category.id}</td>
-                          <td>{category.name}</td>
+                    allCategories.map((el, i) => (
+                      el.parents.length === 0 && (
+                        <tr key={i}>
+                          <td>{el.id}</td>
+                          <td>{el.name}</td>
                           <td>
-                            <button>Editar</button>
+                            <button onClick={() => handleEditMode(el.id)}>Editar</button>
                             <button>Eliminar</button>
                           </td>
                         </tr>
@@ -81,9 +104,9 @@ const Categories = () => {
                 >
                   <option value="0">Seleccione una categoría</option>
                   {
-                    allCategories.map((category, index) => (
-                      category.parents.length === 0 && (
-                        <option key={index} value={category.id}>{category.name}</option>
+                    allCategories.map((el, i) => (
+                      el.parents.length === 0 && (
+                        <option key={i} value={el.id}>{el.name}</option>
                       )
                     ))
                   }
@@ -97,13 +120,13 @@ const Categories = () => {
                   </thead>
                   <tbody>
                     {
-                      categories.map((category, index) => (
-                        category.parents.length > 0 && (
-                          <tr key={index}>
-                            <td>{category.id}</td>
-                            <td>{category.name}</td>
+                      categories.map((el, i) => (
+                        el.parents.length > 0 && (
+                          <tr key={i}>
+                            <td>{el.id}</td>
+                            <td>{el.name}</td>
                             <td>
-                              <button>Editar</button>
+                              <button onClick={() => handleEditMode(el.id)}>Editar</button>
                               <button>Eliminar</button>
                             </td>
                           </tr>
@@ -124,23 +147,24 @@ const Categories = () => {
             <form>
               <div className={s.divName}>
                 <label>Nombre</label>
-                <input type="text" placeholder="Nombre" />
+                <input type="text" placeholder="Nombre" name="name"
+                  value={category.name}
+                  onChange={(e) => setCategory({...category, name: e.target.value})}
+                />
               </div>
               <div className={s.divParent}>
                 <label>Categoría padre</label>
                 <select>
                   <option value="0">Seleccione una categoría</option>
                   {
-                    allCategories.map((category, index) => (
-                      // category.parents.length === 0 && (
-                        <option key={index} value={category.id}>{category.name}</option>
-                      // )
+                    allCategories.map((el, i) => (
+                      <option key={i} value={el.id}>{el.name}</option>
                     ))
                   }
                 </select>
               </div>
               <div className={s.divBtns}>
-                <button>Cancelar</button>
+                <input type="button" value="Cancelar" onClick={() => handleCancelEdit()} />
                 <button>Guardar</button>
               </div>
             </form>
@@ -148,7 +172,7 @@ const Categories = () => {
         ) : (
           <div>
             <h3>Crear categoría</h3>
-            <form>
+            {/* <form>
               <div className={s.divName}>
                 <label>Nombre</label>
                 <input type="text" placeholder="Nombre" />
@@ -158,10 +182,8 @@ const Categories = () => {
                 <select>
                   <option value="0">Seleccione una categoría</option>
                   {
-                    allCategories.map((category, index) => (
-                      // category.parents.length === 0 && (
-                        <option key={index} value={category.id}>{category.name}</option>
-                      // )
+                    allCategories.map((el, index) => (
+                      <option key={index} value={el.id}>{el.name}</option>
                     ))
                   }
                 </select>
@@ -169,7 +191,7 @@ const Categories = () => {
               <div className={s.divBtns}>
                 <button>Agregar</button>
               </div>
-            </form>
+            </form> */}
           </div>
         )
       }
