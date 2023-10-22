@@ -24,8 +24,8 @@ const Categories = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-  // }, [categories, allCategories]);
-  }, []);
+  }, [categories, allCategories]);
+  // }, []);
 
   const handleTabChange = (e) => {
     setTab(e.target.value);
@@ -76,7 +76,21 @@ const Categories = () => {
     });
   };
 
-  console.log(category);
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const updatedCategory = {
+      id: category.id,
+      name: category.name,
+      parentIds: category.parents.map(el => el.id),
+    };
+    dispatch(updateCategory(updatedCategory));
+    setEditMode(false);
+    setCategory({
+      id: "",
+      name: "",
+      parents: [],
+    });
+  };
 
   return (
     <div className={s.container}>
@@ -147,7 +161,7 @@ const Categories = () => {
                   <tbody>
                     {
                       categories.map((el, i) => (
-                        el.parents.length > 0 && (
+                        (el.parents && el.parents.length > 0) && (
                           <tr key={i}>
                             <td>{el.id}</td>
                             <td>{el.name}</td>
@@ -213,7 +227,8 @@ const Categories = () => {
               </div>
               <div className={s.divBtns}>
                 <input type="button" value="Cancelar" onClick={() => handleCancelEdit()} />
-                <button>Guardar</button>
+                <input type="button" value="Guardar" onClick={(e) => handleUpdate(e)} />
+                {/* <button onClick={(e) => handleUpdate(e)}>Guardar</button> */}
               </div>
             </form>
           </div>

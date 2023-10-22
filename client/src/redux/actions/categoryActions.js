@@ -27,6 +27,7 @@ export const createCategory = (category) => async (dispatch) => {
 export const updateCategory = (payload) => async (dispatch) => {
   try {
     const response = await instance.put(`/categories/${payload.id}`, payload);
+    console.log(payload);
     dispatch({ 
       type: 'UPDATE_CATEGORY', 
       payload: response.data 
