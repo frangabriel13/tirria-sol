@@ -50,7 +50,33 @@ const Categories = () => {
     });
   };
 
-  console.log(category)
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if(name === "parents") {
+      const parent = allCategories.find(el => el.id === parseInt(value, 10));
+      if(parent) {
+        setCategory({
+          ...category,
+          parents: [...category.parents, parent],
+        });
+      }
+    } else {
+      setCategory({
+        ...category,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleRemoveParent = (id) => {
+    setCategory({
+      ...category,
+      parents: category.parents.filter(el => el.id !== id),
+    });
+  };
+
+  console.log(category);
 
   return (
     <div className={s.container}>
@@ -149,19 +175,41 @@ const Categories = () => {
                 <label>Nombre</label>
                 <input type="text" placeholder="Nombre" name="name"
                   value={category.name}
-                  onChange={(e) => setCategory({...category, name: e.target.value})}
+                  onChange={handleChange}
                 />
               </div>
               <div className={s.divParent}>
                 <label>Categoría padre</label>
-                <select>
+                <select
+                  name="parents"
+                  onChange={handleChange}
+                >
                   <option value="0">Seleccione una categoría</option>
                   {
                     allCategories.map((el, i) => (
-                      <option key={i} value={el.id}>{el.name}</option>
+                      <option key={i} 
+                        value={el.id}
+                      >{el.name}</option>
                     ))
                   }
                 </select>
+                {
+                  category.parents.length > 0 && (
+                    <div className={s.divParents}>
+                      <label>Categorías padre</label>
+                      <ul>
+                        {
+                          category.parents.map((el, i) => (
+                            <div key={i}>
+                              <li>{el.name}</li>
+                              <button onClick={() => handleRemoveParent(el.id)}>X</button>
+                            </div>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  )
+                }
               </div>
               <div className={s.divBtns}>
                 <input type="button" value="Cancelar" onClick={() => handleCancelEdit()} />
