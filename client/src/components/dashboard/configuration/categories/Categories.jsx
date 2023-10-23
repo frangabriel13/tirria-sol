@@ -24,8 +24,7 @@ const Categories = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [categories, allCategories]);
-  // }, []);
+  }, []);
 
   const handleTabChange = (e) => {
     setTab(e.target.value);
@@ -76,21 +75,42 @@ const Categories = () => {
     });
   };
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     const updatedCategory = {
       id: category.id,
       name: category.name,
       parentIds: category.parents.map(el => el.id),
     };
-    dispatch(updateCategory(updatedCategory));
+    await dispatch(updateCategory(updatedCategory));
     setEditMode(false);
     setCategory({
       id: "",
       name: "",
       parents: [],
     });
+    dispatch(getCategories());
   };
+
+  const handleDelete = async (id) => {
+    await dispatch(deleteCategory(id));
+    dispatch(getCategories());
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    const categoryCreate = {
+      name: category.name,
+      parentIds: category.parents.map(el => el.id),
+    };
+    await dispatch(createCategory(categoryCreate));
+    setCategory({
+      id: "",
+      name: "",
+      parents: [],
+    });
+    dispatch(getCategories());
+  }; 
 
   return (
     <div className={s.container}>
@@ -129,7 +149,7 @@ const Categories = () => {
                           <td>{el.name}</td>
                           <td>
                             <button onClick={() => handleEditMode(el.id)}>Editar</button>
-                            <button>Eliminar</button>
+                            <button onClick={() => handleDelete(el.id)}>Eliminar</button>
                           </td>
                         </tr>
                       )
@@ -167,7 +187,7 @@ const Categories = () => {
                             <td>{el.name}</td>
                             <td>
                               <button onClick={() => handleEditMode(el.id)}>Editar</button>
-                              <button>Eliminar</button>
+                              <button onClick={() => handleDelete(el.id)}>Eliminar</button>
                             </td>
                           </tr>
                         )
@@ -228,21 +248,29 @@ const Categories = () => {
               <div className={s.divBtns}>
                 <input type="button" value="Cancelar" onClick={() => handleCancelEdit()} />
                 <input type="button" value="Guardar" onClick={(e) => handleUpdate(e)} />
-                {/* <button onClick={(e) => handleUpdate(e)}>Guardar</button> */}
               </div>
             </form>
           </div>
         ) : (
           <div>
             <h3>Crear categoría</h3>
-            {/* <form>
+            <form
+              onSubmit={(e) => handleCreate(e)}
+            >
               <div className={s.divName}>
                 <label>Nombre</label>
-                <input type="text" placeholder="Nombre" />
+                <input type="text" placeholder="Nombre" 
+                  onChange={handleChange}
+                  name="name"
+                  value={category.name}
+                />
               </div>
               <div className={s.divParent}>
                 <label>Categoría padre</label>
-                <select>
+                <select
+                  name="parents"
+                  onChange={handleChange}
+                >
                   <option value="0">Seleccione una categoría</option>
                   {
                     allCategories.map((el, index) => (
@@ -250,11 +278,28 @@ const Categories = () => {
                     ))
                   }
                 </select>
+                {
+                  category.parents.length > 0 && (
+                    <div className={s.divParents}>
+                      <label>Categorías padre</label>
+                      <ul>
+                        {
+                          category.parents.map((el, i) => (
+                            <div key={i}>
+                              <li>{el.name}</li>
+                              <button onClick={() => handleRemoveParent(el.id)}>X</button>
+                            </div>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  )
+                }
               </div>
               <div className={s.divBtns}>
-                <button>Agregar</button>
+                <input type="submit" value="Crear" />
               </div>
-            </form> */}
+            </form>
           </div>
         )
       }

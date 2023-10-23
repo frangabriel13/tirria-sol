@@ -14,6 +14,7 @@ export const getCategories = () => async (dispatch) => {
 
 export const createCategory = (category) => async (dispatch) => {
   try {
+    console.log(category);
     const response = await instance.post('/categories', category);
     dispatch({ 
       type: 'CREATE_CATEGORY', 
