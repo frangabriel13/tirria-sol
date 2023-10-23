@@ -1,0 +1,40 @@
+.container {
+  padding: .5rem 1rem;
+}
+
+.container h3 {
+  font-size: 1.8rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divCategory {
+  background-color: #ebe6ff;
+  border-radius: .4rem;
+  /* flex: 1; */
+  flex: 70%;
+}
+
+.divTab ul {
+  display: flex;
+  list-style: none;
+  /* gap: 2rem; */
+}
+
+.divTab li {
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+
+
+
+.divForm {
+  background-color: #ebe6ff;
+  flex: 30%;
+}
