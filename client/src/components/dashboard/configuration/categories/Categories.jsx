@@ -167,6 +167,7 @@ const Categories = () => {
               ) || tab === 1 && (
                 <div>
                   <select
+                    className={s.selectCategory}
                     onChange={(e) => handleFilterSubcategories(e.target.value)}
                   >
                     <option value="0">Seleccione una categoría</option>
@@ -310,7 +311,7 @@ const Categories = () => {
                   }
                 </div>
                 <div className={s.divBtns}>
-                  <input type="submit" value="Crear" />
+                  <input className={s.createBtn} type="submit" value="Crear" />
                 </div>
               </form>
             </div>
