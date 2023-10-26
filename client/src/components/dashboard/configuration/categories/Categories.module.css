@@ -1,27 +1,27 @@
 .container {
-  padding: .5rem 1rem;
+  padding: .5rem 0;
 }
 
 .container h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .content {
   display: flex;
-  justify-content: space-between;
+  padding: 1rem 0;
+  gap: 1rem;
 }
 
 .divCategory {
   background-color: #ebe6ff;
   border-radius: .4rem;
-  /* flex: 1; */
   flex: 70%;
+  box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.1);
 }
 
 .divTab ul {
   display: flex;
   list-style: none;
-  /* gap: 2rem; */
 }
 
 .divTab li {
@@ -29,12 +29,136 @@
   padding: 1rem 1.5rem;
   cursor: pointer;
   transition: background-color .3s;
+  font-weight: 500;
 }
 
+.active {
+  background-color: #332568;
+  color: #ffffff;
+  border-radius: .4rem;
+}
 
+.tabCategories {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
 
+.tabCategories th,
+.tabCategories td {
+  border: .1rem solid #332568;
+  padding: .5rem;
+  text-align: left;
+}
 
-.divForm {
+.tabCategories th {
+  background-color: #f2f2f2;
+}
+
+.tabCategories button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: .5rem 1rem;
+  margin: .5rem;
+  cursor: pointer;
+  border-radius: .5rem;
+  font-weight: 600;
+}
+
+.tabCategories button:hover {
+  background-color: #0056b3;
+}
+
+/* Formulario */
+/* .divForm {
   background-color: #ebe6ff;
   flex: 30%;
+} */
+.divForm {
+  border: .1rem solid #ccc;
+  padding: 2rem;
+  margin: 2rem;
+  background-color: #fff;
+  box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.1);
+}
+
+.divForm h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.divForm form {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.divName,
+.divParent {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.divForm label {
+  font-weight: 600;
+  margin-bottom: .5rem;
+  color: #333;
+}
+
+.divForm input[type="text"],
+.divForm select {
+  padding: 1rem;
+  border: .1rem solid #ccc;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para los botones */
+.divBtns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.divBtns input[type="button"],
+.divBtns input[type="submit"] {
+  padding: 1rem 2rem;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+/* Estilos para la lista de categorías padre */
+.divParents ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.divParents li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: .1rem solid #ccc;
+  padding: .5rem 1rem;
+  margin: .5rem 0;
+}
+
+.divParents button {
+  background-color: #FF4136;
+  color: #fff;
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.divParents button:hover {
+  background-color: #D40E0A;
 }
