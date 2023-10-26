@@ -149,8 +149,14 @@ const Categories = () => {
                             <td>{el.id}</td>
                             <td>{el.name}</td>
                             <td>
-                              <button onClick={() => handleEditMode(el.id)}>Editar</button>
-                              <button onClick={() => handleDelete(el.id)}>Eliminar</button>
+                              <i
+                                className={`bi bi-pencil-square ${s.editIcon}`}
+                                onClick={() => handleEditMode(el.id)}
+                              ></i>
+                              <i
+                                className={`bi bi-trash ${s.deleteIcon}`}
+                                onClick={() => handleDelete(el.id)}
+                              ></i>
                             </td>
                           </tr>
                         )
@@ -187,9 +193,15 @@ const Categories = () => {
                               <td>{el.id}</td>
                               <td>{el.name}</td>
                               <td>
-                                <button onClick={() => handleEditMode(el.id)}>Editar</button>
-                                <button onClick={() => handleDelete(el.id)}>Eliminar</button>
-                              </td>
+                              <i
+                                className={`bi bi-pencil-square ${s.editIcon}`}
+                                onClick={() => handleEditMode(el.id)}
+                              ></i>
+                              <i
+                                className={`bi bi-trash ${s.deleteIcon}`}
+                                onClick={() => handleDelete(el.id)}
+                              ></i>
+                            </td>
                             </tr>
                           )
                         ))
