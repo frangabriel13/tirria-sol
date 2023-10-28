@@ -13,7 +13,7 @@
 }
 
 .divCategory {
-  background-color: #ebe6ff;
+  background-color: #fff;
   border-radius: .4rem;
   flex: 70%;
   box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.1);
@@ -133,16 +133,6 @@
   gap: 1rem;
 }
 
-/* .divBtns input[type="button"],
-.divBtns input[type="submit"] {
-  padding: 1rem 2rem;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: .5rem;
-  cursor: pointer;
-} */
-
 .createBtn {
   padding: 1rem 2rem;
   background-color: #332568;
@@ -157,30 +147,37 @@
   background-color: #3f2e7c;
 }
 
-.divParents ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.divParents li {
+.parentsCat {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: .1rem solid #ccc;
-  padding: .5rem 1rem;
-  margin: .5rem 0;
 }
 
-.divParents button {
-  background-color: #FF4136;
-  color: #fff;
+.parentsCat li {
+  font-size: 1.3rem;
+  display: flex;
+  color: #332568;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f2eeff;
+  padding: .5rem 1rem;
+  margin: .5rem 0;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  width: 100%;
+}
+
+.parentsCat button {
+  font-size: 1.3rem;
+  background-color: #ebe6ff;
+  color: #332568;
   border: none;
   padding: .5rem 1rem;
-  border-radius: .5rem;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
   cursor: pointer;
 }
 
-.divParents button:hover {
-  background-color: #D40E0A;
+.parentsCat button:hover {
+  background-color: #f2eeff;
 }
