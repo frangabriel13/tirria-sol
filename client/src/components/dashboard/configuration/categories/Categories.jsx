@@ -248,7 +248,7 @@ const Categories = () => {
                         <ul>
                           {
                             category.parents.map((el, i) => (
-                              <div key={i}>
+                              <div className={s.parentsCat} key={i}>
                                 <li>{el.name}</li>
                                 <button onClick={() => handleRemoveParent(el.id)}>X</button>
                               </div>
@@ -295,11 +295,11 @@ const Categories = () => {
                   {
                     category.parents.length > 0 && (
                       <div className={s.divParents}>
-                        <label>Categorías padre</label>
-                        <ul>
+                        <label>Seleccionadas</label>
+                        <ul className={s.ulParents}>
                           {
                             category.parents.map((el, i) => (
-                              <div key={i}>
+                              <div className={s.parentsCat} key={i}>
                                 <li>{el.name}</li>
                                 <button onClick={() => handleRemoveParent(el.id)}>X</button>
                               </div>
