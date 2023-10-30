@@ -8,6 +8,7 @@ import {
   deleteCategory,
   filterSubcategories,
 } from '../../../../redux/actions/categoryActions';
+import { formatName } from "../../../../utils/helpers";
 
 function validate(input) {
   let errors = {};
@@ -17,6 +18,16 @@ function validate(input) {
     errors.name = "El nombre solo puede contener letras y espacios";
   } else if (input.name.length < 3) {
     errors.name = "El nombre debe tener al menos 3 caracteres";
+  } else if (input.name.length > 40) {
+    errors.name = "El nombre debe tener menos de 40 caracteres";
+  } else if (input.parents.length === 0) {
+    errors.parents = "Debe seleccionar al menos una categoría padre";
+  } else if (input.parents.length > 3) {
+    errors.parents = "Solo puede seleccionar hasta 3 categorías padre";
+  } else if (input.parents.length === 1 && input.parents[0].id === input.id) {
+    errors.parents = "La categoría no puede ser padre de sí misma";
+  } else if (input.parents.length === 2 && input.parents[0].id === input.parents[1].id) {
+    errors.parents = "No puede seleccionar la misma categoría padre dos veces";
   }
   return errors;
 }
@@ -88,22 +99,6 @@ const Categories = () => {
     });
   };
 
-  // const handleUpdate = async (e) => {
-  //   e.preventDefault();
-  //   const updatedCategory = {
-  //     id: category.id,
-  //     name: category.name,
-  //     parentIds: category.parents.map(el => el.id),
-  //   };
-  //   await dispatch(updateCategory(updatedCategory));
-  //   setEditMode(false);
-  //   setCategory({
-  //     id: "",
-  //     name: "",
-  //     parents: [],
-  //   });
-  //   dispatch(getCategories());
-  // };
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -133,20 +128,6 @@ const Categories = () => {
     dispatch(getCategories());
   };
 
-  // const handleCreate = async (e) => {
-  //   e.preventDefault();
-  //   const categoryCreate = {
-  //     name: category.name,
-  //     parentIds: category.parents.map(el => el.id),
-  //   };
-  //   await dispatch(createCategory(categoryCreate));
-  //   setCategory({
-  //     id: "",
-  //     name: "",
-  //     parents: [],
-  //   });
-  //   dispatch(getCategories());
-  // }; 
   const handleCreate = async (e) => {
     e.preventDefault();
 
@@ -282,6 +263,7 @@ const Categories = () => {
                     value={category.name}
                     onChange={handleChange}
                   />
+                  {errors.name && (<p className={s.error}>{errors.name}</p>)}
                 </div>
                 <div className={s.divParent}>
                   <label>Categoría padre</label>
@@ -298,6 +280,7 @@ const Categories = () => {
                       ))
                     }
                   </select>
+                  {errors.parents && (<p className={s.error}>{errors.parents}</p>)}
                   {
                     category.parents.length > 0 && (
                       <div className={s.divParents}>
@@ -350,6 +333,7 @@ const Categories = () => {
                       ))
                     }
                   </select>
+                  {errors.parents && (<p className={s.error}>{errors.parents}</p>)}
                   {
                     category.parents.length > 0 && (
                       <div className={s.divParents}>
