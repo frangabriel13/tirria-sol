@@ -9,6 +9,18 @@ import {
   filterSubcategories,
 } from '../../../../redux/actions/categoryActions';
 
+function validate(input) {
+  let errors = {};
+  if(!input.name) {
+    errors.name = "El nombre es requerido";
+  } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(input.name)) {
+    errors.name = "El nombre solo puede contener letras y espacios";
+  } else if (input.name.length < 3) {
+    errors.name = "El nombre debe tener al menos 3 caracteres";
+  }
+  return errors;
+}
+
 const Categories = () => {
   const dispatch = useDispatch();
   const categories = useSelector(state => state.category.categories);
@@ -21,6 +33,7 @@ const Categories = () => {
     parents: [],
     children: [],
   });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(getCategories());
@@ -75,21 +88,44 @@ const Categories = () => {
     });
   };
 
+  // const handleUpdate = async (e) => {
+  //   e.preventDefault();
+  //   const updatedCategory = {
+  //     id: category.id,
+  //     name: category.name,
+  //     parentIds: category.parents.map(el => el.id),
+  //   };
+  //   await dispatch(updateCategory(updatedCategory));
+  //   setEditMode(false);
+  //   setCategory({
+  //     id: "",
+  //     name: "",
+  //     parents: [],
+  //   });
+  //   dispatch(getCategories());
+  // };
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const updatedCategory = {
-      id: category.id,
-      name: category.name,
-      parentIds: category.parents.map(el => el.id),
-    };
-    await dispatch(updateCategory(updatedCategory));
-    setEditMode(false);
-    setCategory({
-      id: "",
-      name: "",
-      parents: [],
-    });
-    dispatch(getCategories());
+
+    const errors = validate(category);
+
+    if (Object.keys(errors).length === 0) {
+      const updatedCategory = {
+        id: category.id,
+        name: category.name,
+        parentIds: category.parents.map(el => el.id),
+      };
+      await dispatch(updateCategory(updatedCategory));
+      setEditMode(false);
+      setCategory({
+        id: "",
+        name: "",
+        parents: [],
+      });
+      dispatch(getCategories());
+    } else {
+      setErrors(errors);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -97,20 +133,41 @@ const Categories = () => {
     dispatch(getCategories());
   };
 
+  // const handleCreate = async (e) => {
+  //   e.preventDefault();
+  //   const categoryCreate = {
+  //     name: category.name,
+  //     parentIds: category.parents.map(el => el.id),
+  //   };
+  //   await dispatch(createCategory(categoryCreate));
+  //   setCategory({
+  //     id: "",
+  //     name: "",
+  //     parents: [],
+  //   });
+  //   dispatch(getCategories());
+  // }; 
   const handleCreate = async (e) => {
     e.preventDefault();
-    const categoryCreate = {
-      name: category.name,
-      parentIds: category.parents.map(el => el.id),
-    };
-    await dispatch(createCategory(categoryCreate));
-    setCategory({
-      id: "",
-      name: "",
-      parents: [],
-    });
-    dispatch(getCategories());
-  }; 
+
+    const errors = validate(category);
+
+    if (Object.keys(errors).length === 0) {
+      const categoryCreate = {
+        name: category.name,
+        parentIds: category.parents.map(el => el.id),
+      };
+      await dispatch(createCategory(categoryCreate));
+      setCategory({
+        id: "",
+        name: "",
+        parents: [],
+      });
+      dispatch(getCategories());
+    } else {
+      setErrors(errors);
+    }
+  };
 
   return (
     <div className={s.container}>
@@ -278,6 +335,7 @@ const Categories = () => {
                     name="name"
                     value={category.name}
                   />
+                  {errors.name && (<p className={s.error}>{errors.name}</p>)}
                 </div>
                 <div className={s.divParent}>
                   <label>Categoría padre</label>
