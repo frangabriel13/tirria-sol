@@ -18,16 +18,6 @@ function validate(input) {
     errors.name = "El nombre solo puede contener letras y espacios";
   } else if (input.name.length < 3) {
     errors.name = "El nombre debe tener al menos 3 caracteres";
-  } else if (input.name.length > 40) {
-    errors.name = "El nombre debe tener menos de 40 caracteres";
-  } else if (input.parents.length === 0) {
-    errors.parents = "Debe seleccionar al menos una categoría padre";
-  } else if (input.parents.length > 3) {
-    errors.parents = "Solo puede seleccionar hasta 3 categorías padre";
-  } else if (input.parents.length === 1 && input.parents[0].id === input.id) {
-    errors.parents = "La categoría no puede ser padre de sí misma";
-  } else if (input.parents.length === 2 && input.parents[0].id === input.parents[1].id) {
-    errors.parents = "No puede seleccionar la misma categoría padre dos veces";
   }
   return errors;
 }
