@@ -42,6 +42,12 @@ const Categories = () => {
 
   const handleTabChange = (e) => {
     setTab(e.target.value);
+    setCategory({
+      id: "",
+      name: "",
+      parents: [],
+    });
+    setEditMode(false);
   };
 
   const handleFilterSubcategories = (id) => {
@@ -49,7 +55,7 @@ const Categories = () => {
   };
 
   const handleEditMode = (id) => {
-    const categoryToEdit = categories.find(el => el.id === id);
+    const categoryToEdit = allCategories.find(el => el.id === id);
     setCategory(categoryToEdit);
     setEditMode(true);
   };
