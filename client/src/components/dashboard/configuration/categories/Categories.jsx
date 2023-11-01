@@ -271,9 +271,9 @@ const Categories = () => {
                     <option value="0">Seleccione una categoría</option>
                     {
                       allCategories.map((el, i) => (
-                        <option key={i} 
-                          value={el.id}
-                        >{el.name}</option>
+                        el.id !== category.id && (
+                          <option key={i} value={el.id}>{el.name}</option>
+                        )
                       ))
                     }
                   </select>
@@ -287,7 +287,7 @@ const Categories = () => {
                             category.parents.map((el, i) => (
                               <div className={s.parentsCat} key={i}>
                                 <li>{el.name}</li>
-                                <button onClick={() => handleRemoveParent(el.id)}>X</button>
+                                <input type="button" value="X" onClick={() => handleRemoveParent(el.id)} />
                               </div>
                             ))
                           }
