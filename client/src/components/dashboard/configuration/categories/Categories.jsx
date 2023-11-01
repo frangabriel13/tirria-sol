@@ -134,6 +134,7 @@ const Categories = () => {
         name: "",
         parents: [],
       });
+      setErrors({});
       dispatch(getCategories());
     } else {
       setErrors(errors);
@@ -315,6 +316,7 @@ const Categories = () => {
                   <select
                     name="parents"
                     onChange={handleChange}
+                    value={category.parents.length === 0 ? "0" : category.parents[0].id}
                   >
                     <option value="0">Seleccione una categoría</option>
                     {
