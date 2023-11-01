@@ -68,7 +68,7 @@ const Categories = () => {
 
     if(name === "parents") {
       const parent = allCategories.find(el => el.id === parseInt(value, 10));
-      if(parent) {
+      if (parent && !category.parents.some(p => p.id === parent.id)) {
         setCategory({
           ...category,
           parents: [...category.parents, parent],
@@ -333,7 +333,7 @@ const Categories = () => {
                             category.parents.map((el, i) => (
                               <div className={s.parentsCat} key={i}>
                                 <li>{el.name}</li>
-                                <button onClick={() => handleRemoveParent(el.id)}>X</button>
+                                <input type="button" value="X" onClick={() => handleRemoveParent(el.id)} />
                               </div>
                             ))
                           }
