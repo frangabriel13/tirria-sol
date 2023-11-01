@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
       await category.update({ name });
     }
 
-    if(parentIds && parentIds.length > 0) {
+    if(parentIds) {
       await category.setParents(parentIds);
     }
 
