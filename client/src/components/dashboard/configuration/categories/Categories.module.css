@@ -167,7 +167,7 @@
   width: 100%;
 }
 
-.parentsCat button {
+.parentsCat input {
   font-size: 1.3rem;
   background-color: #ebe6ff;
   color: #332568;
@@ -178,6 +178,6 @@
   cursor: pointer;
 }
 
-.parentsCat button:hover {
+.parentsCat input:hover {
   background-color: #f2eeff;
 }
