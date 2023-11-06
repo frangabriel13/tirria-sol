@@ -125,7 +125,139 @@ const Variations = () => {
 
   return (
     <div className={s.container}>
-      <div className={s.title}>Variations</div>
+      <h3>Administrar variaciones</h3>
+      <div className={s.content}>
+        <ul className={s.listTab}>
+          <li
+            className={selectedTab === 0 ? s.selected : ""}
+            onClick={() => handleTabClick(0)}>Size
+          </li>
+          <li
+            className={selectedTab === 1 ? s.selected : ""}
+            onClick={() => handleTabClick(1)}>Color
+          </li>
+        </ul>
+        <div className={s.divSubcontent}>
+          {
+            selectedTab === 0 && (
+              <div className={s.divSize}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Talle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      sizes.map((el) => (
+                        <tr key={el.id}>
+                          <td>{el.id}</td>
+                          <td>{el.name}</td>
+                          <td>
+                            <button onClick={() => handleEditSize(el.id)}>Editar</button>
+                            <button onClick={() => handleDeleteSize(el.id)}>Eliminar</button>
+                          </td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+                {
+                  editMode ? (
+                    <div className={s.divEditSize}>
+                      <input type="text" placeholder="Talle"
+                        value={size.name}
+                        onChange={(e) => setSize({ ...size, name: e.target.value })}
+                      />
+                      <button onClick={() => handleCancelEdit()}>Cancelar</button>
+                      <button onClick={(e) => handleUpdateSize(e)}
+                      >Guardar</button>
+                    </div>
+                  ) : (
+                    <div className={s.divAddSize}>
+                      <h3>Agregar talle</h3>
+                      <div>
+                        <div>
+                          <label>Talle:</label>
+                          <input type="text" name="size" placeholder="Talle"
+                            value={size.name}
+                            onChange={(e) => setSize({ ...size, name: e.target.value })}
+                          />
+                        </div>
+                        <button
+                          onClick={(e) => handleAddSize(e)}
+                        >Agregar</button>
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+            ) || selectedTab === 1 && (
+              <div className={s.divColor}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Color</th>
+                      <th>Código</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      colors.map((el) => (
+                        <tr key={el.id}>
+                          <td>{el.id}</td>
+                          <td>{el.name}</td>
+                          <td>{el.code}</td>
+                          <td>
+                            <button onClick={() => handleEditColor(el.id)}>Editar</button>
+                            <button onClick={() => handleDeleteColor(el.id)}>Eliminar</button>
+                          </td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+                {
+                  editMode ? (
+                    <div className={s.divEditColor}>
+                      <input type="text" placeholder="Color"
+                        value={color.name}
+                        onChange={(e) => setColor({ ...color, name: e.target.value })}
+                      />
+                      <input type="color" placeholder="Código" 
+                        value={color.code}
+                        onChange={(e) => setColor({ ...color, code: e.target.value })}
+                      />
+                      <button
+                        onClick={() => handleCancelEditColor()}
+                      >Cancelar</button>
+                      <button
+                        onClick={(e) => handleUpdateColor(e)}
+                      >Guardar</button>
+                    </div>
+                  ) : (
+                    <div className={s.divAddColor}>
+                      <input type="text" placeholder="Color" 
+                        value={color.name}
+                        onChange={(e) => setColor({ ...color, name: e.target.value })}  
+                      />
+                      <input type="color" placeholder="Código"
+                        value={color.code}
+                        onChange={(e) => setColor({ ...color, code: e.target.value })}
+                      />
+                      <button
+                        onClick={(e) => handleAddColor(e)}
+                      >Agregar</button>
+                    </div>
+                  )
+                }
+              </div>
+            )
+          }
+        </div>
+      </div>
     </div>
   );
 };
