@@ -141,7 +141,7 @@ const Variations = () => {
           {
             selectedTab === 0 && (
               <div className={s.divSize}>
-                <table>
+                <table className={s.tableSize}>
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -155,9 +155,15 @@ const Variations = () => {
                           <td>{el.id}</td>
                           <td>{el.name}</td>
                           <td>
-                            <button onClick={() => handleEditSize(el.id)}>Editar</button>
-                            <button onClick={() => handleDeleteSize(el.id)}>Eliminar</button>
-                          </td>
+                              <i
+                                className={`bi bi-pencil-square ${s.editIcon}`}
+                                onClick={() => handleEditSize(el.id)}
+                              ></i>
+                              <i
+                                className={`bi bi-trash ${s.deleteIcon}`}
+                                onClick={() => handleDeleteSize(el.id)}
+                              ></i>
+                            </td>
                         </tr>
                       ))
                     }
@@ -165,30 +171,36 @@ const Variations = () => {
                 </table>
                 {
                   editMode ? (
-                    <div className={s.divEditSize}>
-                      <input type="text" placeholder="Talle"
-                        value={size.name}
-                        onChange={(e) => setSize({ ...size, name: e.target.value })}
-                      />
-                      <button onClick={() => handleCancelEdit()}>Cancelar</button>
-                      <button onClick={(e) => handleUpdateSize(e)}
-                      >Guardar</button>
-                    </div>
-                  ) : (
-                    <div className={s.divAddSize}>
-                      <h3>Agregar talle</h3>
-                      <div>
-                        <div>
-                          <label>Talle:</label>
+                    <form>
+                      <div className={s.divFormSize}>
+                        <div className={s.divName}>
+                          <label>Talle</label>
                           <input type="text" name="size" placeholder="Talle"
                             value={size.name}
                             onChange={(e) => setSize({ ...size, name: e.target.value })}
                           />
                         </div>
-                        <button
-                          onClick={(e) => handleAddSize(e)}
-                        >Agregar</button>
+                        <div className={s.divBtns}>
+                          <input type="button" value="Cancelar" onClick={() => handleCancelEdit()} />
+                          <input type="button" value="Guardar" onClick={(e) => handleUpdateSize(e)} />
+                        </div>
                       </div>
+                    </form>
+                  ) : (
+                    <div className={s.divFormSize}>
+                      <h3>Agregar talle</h3>
+                      <form onSubmit={(e) => handleAddSize(e)}>
+                        <div className={s.divName}>
+                          <label>Talle</label>
+                          <input type="text" name="size" placeholder="Talle"
+                            value={size.name}
+                            onChange={(e) => setSize({ ...size, name: e.target.value })}
+                          />
+                        </div>
+                        <div className={s.divBtns}>
+                          <input className={s.createBtn} type="submit" value="Crear" />
+                        </div>
+                      </form>
                     </div>
                   )
                 }
