@@ -4,6 +4,7 @@ import imageReducer from "./imageReducer";
 import categoryReducer from "./categoryReducer";
 import sizeReducer from "./sizeReducer";
 import colorReducer from "./colorReducer";
+import variationReducer from "./variationReducer";
 
 const rootReducer = combineReducers({
   product: productReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   category: categoryReducer,
   size: sizeReducer,
   color: colorReducer,
+  variation: variationReducer,
 });
 
 
