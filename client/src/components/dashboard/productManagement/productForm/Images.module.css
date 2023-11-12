@@ -1,0 +1,80 @@
+.container h2 {
+  font-size: 2rem;
+}
+
+.divImages {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 4 columnas por fila para mostrar 12 imágenes por fila */
+  gap: .5rem;
+}
+
+.images {
+  position: relative;
+}
+
+.images img {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Estilos para el contenedor de la paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Estilos para los botones de paginación */
+.pagination button {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.divForm {
+  padding: 1rem 0;
+}
+
+.divForm .btn {
+  background-color: #00a65a;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+}
+
+/* Estilos para el botón "Agregar" y "Cancelar" en la parte inferior */
+.divBtn button {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+}
+
+.divBtn button:last-child {
+  background-color: #ff0000; /* Color rojo para el botón "Cancelar" */
+}
+
+.divBtn button:hover {
+  background-color: #0056b3;
+}
+
+.divBtn button:last-child:hover {
+  background-color: #d60000; /* Cambia el color del botón "Cancelar" al hacer hover */
+}
