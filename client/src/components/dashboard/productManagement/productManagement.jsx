@@ -87,7 +87,7 @@ const ProductManagement = () => {
       const updatedVariation = {
         ...editingVariation,
         price: parseFloat(newVariationPrice), // Convierte el nuevo precio a un número flotante
-        availability: editingVariation.availability,
+        available: editingVariation.available,
       };
   
       // Llama a la acción para actualizar la variación en el estado global
@@ -128,7 +128,7 @@ const ProductManagement = () => {
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Variable</th>
-                    <th>Categoría</th>
+                    {/* <th>Categorías</th> */}
                     <th>Precio</th>
                     <th>Habilitado</th>
                   </tr>
@@ -139,10 +139,10 @@ const ProductManagement = () => {
                       <tr key={el.id}>
                         <td>{el.id}</td>
                         <td>{el.name}</td>
-                        <td>{el.isVariable ? 'Sí' : 'No'}</td>
-                        <td>{el.category ? el.category.name : 'No'}</td>
+                        <td>{el.isVariant ? 'Sí' : 'No'}</td>
+                        {/* <td>{el.category ? el.category.name : 'No'}</td> */}
                         <td>{el.price}</td>
-                        <td>{el.availability ? 'Sí' : 'No'}</td>
+                        <td>{el.available ? 'Sí' : 'No'}</td>
                         <td>
                           <button onClick={() => {setSelectedProduct(el.id)}}>Ver</button>
                         </td>
@@ -188,7 +188,7 @@ const ProductManagement = () => {
                             <td>{el.id}</td>
                             <td>{el.size ? el.size.name : 'Sin tamaño'}</td>
                             <td>{el.price}</td>
-                            <td>{el.availability ? 'Sí' : 'No'}</td>
+                            <td>{el.available ? 'Sí' : 'No'}</td>
                             <td>
                               <button onClick={() => handleEditVariation(el.id)}>Editar</button>
                             </td>
@@ -218,12 +218,12 @@ const ProductManagement = () => {
                 <label htmlFor="availability">Habilitado</label>
                 <input
                   type="checkbox"
-                  id="availability"
-                  checked={editingVariation.availability}
+                  id="available"
+                  checked={editingVariation.available}
                   onChange={(e) => {
                     const updatedVariation = {
                       ...editingVariation,
-                      availability: e.target.checked,
+                      available: e.target.checked,
                     };
                     setEditingVariation(updatedVariation);
                   }}
