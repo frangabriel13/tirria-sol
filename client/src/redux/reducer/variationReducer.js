@@ -23,6 +23,13 @@ function variationReducer(state = initialState, action) {
       return {
         ...state,
       }
+    case 'FILTER_VARIATIONS':
+      const allVariations = state.allVariations;
+      const variationFiltered = allVariations.filter((el) => el.productId === parseInt(action.payload));
+      return {
+        ...state,
+        variations: variationFiltered,
+      }
     default:
       return state;
   }
