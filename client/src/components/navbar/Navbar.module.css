@@ -1,0 +1,47 @@
+/* Estilo del Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #ffffff;
+  color: #dd0000;
+  border-bottom: #000000 3px solid;
+}
+
+/* Estilo del Logo */
+.logo img {
+ width: 15rem;
+}
+
+/* Estilo del Menú de Navegación */
+.menu ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #272727;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+/* Estilo de las Redes Sociales */
+.redesociales a {
+  color: #272727;
+  font-size: 1.5rem;
+}
+
+.redesociales a:hover {
+  color: #00aced; /* Cambia el color al pasar el ratón sobre las redes sociales */
+}
+
+.icon {
+  color: #000000;
+}
+

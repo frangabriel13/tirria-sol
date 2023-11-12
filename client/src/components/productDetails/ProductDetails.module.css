@@ -1,0 +1,389 @@
+.divGlobal {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  max-width: 90%;
+  gap: 5rem;
+  /* padding: 5.5rem 5%; */
+}
+
+.minimo {
+  text-align: center;
+  padding-top: 1rem;
+  color: #ffffff;
+  min-height: 5rem;
+  background-color: black;
+  /* margin-bottom: -5rem; */
+  
+} 
+
+.continent {
+  padding-bottom: 30rem;
+ 
+}
+
+.divLocal {
+  padding: 2.5rem;
+}
+
+.divPhotos {
+  display: flex;
+  margin-left: 5rem;
+  margin-top: 10rem;
+  
+}
+.divImage .gallery {
+  flex: 1;
+  padding: 2rem;
+  
+
+}
+
+.divImage {
+  
+  overflow: hidden;
+
+}
+
+/* .productoDetail {
+  padding-top: 2rem;
+  width: 70rem;
+  background-color: #ffffff;
+  padding-left: 1rem;
+  margin-right: 1rem;
+  margin-left: auto;
+} */
+.productoDetail {
+  padding-top: 2rem;
+  /* width: 100%; */
+  background-color: #ffffff;
+  padding: 0 1rem;
+}
+
+
+.productoDetailName {
+  font-size: 2.4rem;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.productoDetailDescription {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.productoDetailPrice {
+  font-size: 5.6rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.productoDetailDiscount {
+  color: #00a65a;
+  margin-bottom: 1rem;
+}
+
+.productoDetailCategory {
+  font-style: italic;
+  color: #666666;
+  margin-bottom: 1rem;
+}
+
+.productoDetailImages {
+  overflow: scroll; 
+  max-height: 90rem;
+  max-width: 50rem;
+ 
+}
+.productoDetailImages::-webkit-scrollbar {
+  display: none;
+}
+
+.productoDetailImageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 40rem;
+  max-height: 80rem;
+  overflow: hidden;
+}
+
+.productoDetailImage {
+  width: 50rem;
+  height: 90rem;
+  object-fit: cover;
+  cursor: zoom-in;
+  
+}
+
+
+
+.productoDetailImageZoomOverlay.active {
+  display: flex;
+}
+
+.productoDetailImageZoom {
+  max-height: 90vh;
+  max-width: 90vw;
+}
+
+.productoDetailStock {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color:#000000;
+  margin-top: 2rem;
+}
+
+.productoDetailVariations {
+  font-style: italic;
+  color: #666666;
+  margin-top: 2rem;
+}
+.gallery {
+  max-width: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 8rem;
+}
+
+.galleryImage {
+  width: 9rem;
+  /* width: 100%; */
+  height: 15rem;
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.selected {
+  border: .2rem solid rgb(0, 0, 0);
+}
+
+
+
+
+
+.buttonCart {
+  width: 27rem;
+  height: 4rem;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: transform 0.3s ease-in-out; /* Transición para volver a su tamaño original */
+}
+
+.buttonCart:hover {
+  background-color: #f9457f; /* Cambia el color de fondo cuando el mouse está encima */
+}
+
+.buttonCart:active {
+  animation: clickAnimation 0.5s ease-in-out; /* Duración de la animación y easing */
+  transform: scale(0.95); /* Reducimos el tamaño del botón cuando se hace clic */
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1); /* Escala inicial */
+  }
+  50% {
+    transform: scale(0.92); /* Escala a la mitad de la animación */
+  }
+  100% {
+    transform: scale(0.95); /* Escala final */
+  }
+}
+
+
+
+.buttonWP {
+  width: 27rem;
+  height: 4rem;
+  background-color: #00a65a;
+  color: #ffffff;
+  font-size: 1.6rem;
+  
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.divDescription {
+  margin-top: 5rem;
+  padding: 2rem;
+  width: 190rem;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+}
+
+.divVariant {
+  background-color: #ffffff;
+  
+  padding-right: 15rem;
+}
+.divVariant p {
+  font-size: 1.6rem;
+  color: #000000;
+  
+  margin-left: 0rem; 
+}
+
+.divVariant h3 {
+  font-size: 1.6rem;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.divQuantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: .5rem;
+}
+
+.divQuantity p {
+  background-color: #f9457f;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  /* font-weight: 700; */
+  color: #ffffff;
+}
+
+.btnQuantity {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.decrement {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border: solid .1rem #000000;
+  border-radius: .4rem;
+  cursor: pointer;
+}
+
+.increment {
+  background-color: #f9457f;
+  color: #ffffff;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border: solid .1rem #f9457f;
+  border-radius: .4rem;
+  cursor: pointer;
+}
+
+.decrement:hover {
+  background-color: #242424;
+  color: #ffffff;
+  border: solid .1rem #1b1b1b;
+  transition: .3s;
+}
+
+.increment:hover {
+  background-color: #ff588d;
+  color: #ffffff;
+  border: solid .1rem #f9457f;
+  transition: .3s;
+}
+
+.quantity {
+  font-weight: 700;
+  font-size: 1.6rem;
+  text-align: center;
+  border-radius: .4rem;
+}
+
+.cantTotal {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #000000;
+  margin-top: 1rem;
+}
+
+.relacionados {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333; /* Cambia el color a tu preferencia */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+/* Opcional: Agregar una línea decorativa debajo del título */
+.relacionados::after {
+  content: "";
+  display: block;
+  width: 100px; /* Ancho de la línea */
+  height: 4px; /* Grosor de la línea */
+  background-color: #007bff; /* Cambia el color a tu preferencia */
+  margin: 0.5rem auto;
+}
+
+/* Estilos para dispositivos móviles (ancho máximo de 768px) */
+@media (max-width: 768px) {
+  .divGlobal {
+    margin-top: 10rem;
+    flex-direction: column; /* Cambia la dirección de flex a columna */
+    align-items: center; /* Centra los elementos verticalmente */
+  }
+
+  .divLocal {
+    padding: 1rem; /* Reduce el relleno */
+  }
+  .gallery {
+    max-width: 100%; /* Ancho del 100% para adaptarse al tamaño de la pantalla */
+    margin: 0 auto; /* Centra el elemento horizontalmente */
+    padding: 1rem; /* Agrega un poco de relleno */
+  }
+
+  .divPhotos {
+    margin-left: 0; /* Elimina el margen izquierdo */
+    margin-top: 0; /* Elimina el margen superior */
+  }
+
+  .divImage {
+    width: 100%; /* Ancho del 100% para adaptarse al tamaño de la pantalla */
+    overflow: hidden; /* Oculta el desbordamiento horizontal */
+    margin: 0 auto; /* Centra el elemento horizontalmente */
+  }
+
+  .productoDetail {
+    padding: 2rem 1rem; /* Relleno superior e inferior de 2rem, relleno izquierdo y derecho de 1rem */
+  }
+
+  .divVariant {
+    margin-bottom: 2rem; /* Margen inferior de 2rem para separar los elementos */
+  }
+  
+
+  .productoDetailImage {
+    width: 100%; /* Ancho del 100% para adaptarse al tamaño de la pantalla */
+    height: auto; /* Altura automática para mantener la relación de aspecto */
+  }
+
+  .buttonCart,
+  .buttonWP {
+    width: 25rem; /* Ancho del 100% para adaptarse al tamaño de la pantalla */
+  }
+
+  .divDescription {
+    width: 100%; /* Ancho del 100% para adaptarse al tamaño de la pantalla */
+    margin-left: 0; /* Elimina el margen izquierdo */
+    padding: 1rem; /* Reduce el relleno */
+  }
+}

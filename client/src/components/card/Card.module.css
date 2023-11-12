@@ -1,0 +1,128 @@
+* {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+.card {
+ 
+  background-color: #ffffff;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15rem;  font-family: 'PT Sans Narrow', sans-serif;
+  border-radius: 0.2rem;
+  width: 100%; 
+  height: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+} 
+/* Estilo para dispositivos móviles (pantallas con un ancho de hasta 480px) */
+@media (max-width: 480px) {
+  .card {
+    width: 100%; /* Ajusta el ancho para que se extienda al ancho de la pantalla */
+    padding: 0.5rem; /* Reduce el espaciado interior de la tarjeta */
+    margin-bottom: 0.5rem; /* Reduce el espaciado entre las tarjetas */
+    font-size: 0.8rem; /* Reduce el tamaño de fuente para el contenido de la tarjeta */
+  }
+}
+
+
+.img {
+  
+  position: relative;
+  width: 100%;
+  height: 60rem;
+}
+
+.img img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  font-size: 2.5rem;
+  padding-top: 2rem;
+  color: #000 !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.76); /* Fondo semi-transparente */
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.3s;
+  height: 8rem;
+}
+
+.overlay a {
+  color: #000 !important;
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.img:hover .overlay {
+  opacity: 1; /* Mostrar el fondo al hacer hover sobre la imagen */
+}
+
+.detail {
+  background-color: transparent; /* Cambiamos el color de fondo a transparente */
+  
+  color: #000000 !important;
+  padding: 1rem 2rem;
+  border: none;
+  font-size: 2.7rem;
+  font-weight: 700;
+  transition: background-color 0.3s, transform 0.3s;
+  opacity: 0; /* Ocultamos el botón */
+}
+:visited .detail {
+  color: black !important;
+}
+
+
+.img:hover .detail {
+  opacity: 1; /* Mostramos el botón al hacer hover sobre la imagen */
+  background-color: transparent;
+}
+
+.detail:hover {
+  background-color: transparent;
+  transform: scale(1.1);
+}
+
+button {
+  cursor: pointer;
+  font-size: 2rem;
+  background-color: transparent;
+}
+
+.name {
+text-transform: uppercase;
+font-family: 'PT Sans Narrow', sans-serif;
+font-size: 1.8rem;
+color: #000;
+text-align: center;
+font-weight: 400;
+}
+
+.price {
+  color: #000;
+  font-size: 2.3rem;
+  margin: .5em 0;
+  transition: font-size 0.3s, color 0.3s;
+}
+.content {
+  cursor: pointer;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40rem;
+  margin: auto;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
