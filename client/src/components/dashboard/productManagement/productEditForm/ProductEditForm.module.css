@@ -1,0 +1,88 @@
+/* EditProductForm.module.css */
+
+.container {
+  margin: 2rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.container h3 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.divInput {
+  margin-bottom: 1.5rem;
+}
+
+.divInput label {
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.divInput input[type="text"],
+.divInput input[type="number"],
+.divInput textarea,
+.divInput select {
+  width: 100%;
+  padding: .8rem;
+  border: .1rem solid #ccc;
+  border-radius: .5rem;
+  font-size: 1.6rem;
+}
+
+.divButton {
+  margin-top: 2rem;
+}
+
+.divButton button {
+  padding: 1rem 2rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: .5rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 1rem;
+}
+
+.divButton button:last-child {
+  background-color: #e74c3c; /* Color de fondo del botón Cancelar */
+}
+
+.divButton button:hover {
+  background-color: #0056b3;
+}
+
+.divInputImg {
+  margin-top: 2rem;
+}
+
+.imgDiv {
+  max-width: 10rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.imgDiv img {
+  max-width: 100%;
+  height: auto;
+}
+
+.divInput ul {
+  list-style: none;
+  padding: 0;
+}
+
+.divInput li {
+  margin-bottom: 1rem;
+}
