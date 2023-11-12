@@ -59,3 +59,10 @@ export const deleteVariation = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const filterVariations = (variation) => {
+  return {
+    type: "FILTER_VARIATIONS",
+    payload: variation,
+  };
+};
