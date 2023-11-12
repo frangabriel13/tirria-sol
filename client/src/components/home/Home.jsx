@@ -1,13 +1,21 @@
 import React from "react";
 import s from "./Home.module.css";
+import Cards from "../cards/Cards";
+// import Banner from "../banner/Banner";
+// import Info from "../info/Info";
+// import Categories from "../categories/Categories";
+import ProductDetail from "../productDetails/ProductDetails";
 
-const Home = () => {
+function Home() {
+  const productId = 1; // Puedes cambiar esto al ID que desees pasar
+
   return (
     <div className={s.container}>
-      <h1>Home</h1>
+      <ProductDetail productId={productId} />
+      <Cards />
     </div>
   );
-};
+}
 
 
-export default Home;
+export default Home; 

@@ -1,0 +1,75 @@
+.containerGlobal {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Cambiar a una disposición de columna */
+  align-items: center; /* Centrar los elementos horizontalmente */
+}
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  grid-row-gap: 10rem;
+  margin: 2rem auto;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Estilo para tablets (ejemplo: 768px a 1024px) */
+@media (max-width: 1424px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr); /* Cambia el número de columnas para tablets */
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* Cambia el número de columnas para tablets */
+  }
+}
+
+/* Estilo para pantallas más pequeñas (ejemplo: menos de 768px) */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr); /* Cambia el número de columnas para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.page {
+  margin: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #f9457f;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.page:hover {
+  background-color: #ccc;
+}
+
+.activePage {
+  margin: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #f9457f;
+  color: #fff;
+  border: 1px solid #f9457f;
+  border-radius: 4px;
+  cursor: pointer;
+}
