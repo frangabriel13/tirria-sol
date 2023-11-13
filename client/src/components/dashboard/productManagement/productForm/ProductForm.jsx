@@ -56,6 +56,13 @@ function ProductForm({getProducts}) {
     dispatch(getSizes());
   }, []);
 
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      variations: combinedVariation,
+    }));
+  }, [combinedVariation]);
+
   const validateForm = () => {
     // Implementa tus validaciones aquí
     const newErrors = {};
