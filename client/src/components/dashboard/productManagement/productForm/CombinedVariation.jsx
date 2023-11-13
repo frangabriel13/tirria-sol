@@ -25,7 +25,8 @@ function createCombinedVariation() {
           color: {id: color.id, name: color.name},
           price: formData.price,
           stock: formData.stock,
-          availability: formData.availability
+          availability: formData.availability,
+          images: []
         });
       });
     });
@@ -37,7 +38,8 @@ function createCombinedVariation() {
         color: null,
         price: formData.price,
         stock: formData.stock,
-        availability: formData.availability
+        availability: formData.availability,
+        images: []
       });
     });
   } else if (selectedColors.length > 0) {
@@ -48,7 +50,8 @@ function createCombinedVariation() {
         color: {id: color.id, name: color.name},
         price: formData.price,
         stock: formData.stock,
-        availability: formData.availability
+        availability: formData.availability,
+        images: []
       });
     });
   } else {
@@ -58,7 +61,8 @@ function createCombinedVariation() {
       color: null,
       price: formData.price,
       stock: formData.stock,
-      availability: formData.availability
+      availability: formData.availability,
+      images: []
     });
   }
   
@@ -74,6 +78,7 @@ function createCombinedVariation() {
       price: variation.price,
       stock: variation.stock,
       availability: variation.availability,
+      images: []
     })),
   };
 
@@ -119,18 +124,6 @@ const handlePriceChange = (e, index) => {
   setFormData(updatedFormData);
 };
 
-const handleStockChange = (e, index) => {
-  const newCombinedVariation = [...combinedVariation];
-  newCombinedVariation[index].stock = parseInt(e.target.value, 10);
-  setCombinedVariation(newCombinedVariation);
-  // Actualiza formData con las variaciones
-  const updatedFormData = {
-    ...formData,
-    variations: newCombinedVariation,
-  };
-  setFormData(updatedFormData);
-};
-
 return(
   <div>
     <h2>Todas las variaciones</h2>
@@ -148,23 +141,6 @@ return(
                 value={variation.price || 0}
                 onChange={(e) => handlePriceChange(e, index)}
               />
-              {/* <input 
-                type="number"
-                name="stock"
-                placeholder="Stock"
-                value={variation.stock || 0}
-                onChange={(e) => handleStockChange(e, index)}
-              /> */}
-               {/* Falta configurar
-              <input type="checkbox" 
-                name="availability"
-                checked={variation.availability}
-                onChange={(e) => {
-                  const newCombinedVariation = [...combinedVariation];
-                  newCombinedVariation[index].availability = e.target.checked;
-                  setCombinedVariation(newCombinedVariation);
-                }}
-              /> */}
             </div>
           )
         })
