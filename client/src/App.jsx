@@ -8,7 +8,7 @@ import Detail from './components/detail/Detail';
 function App() {
   const location = useLocation();
 
-  const isDashboard = location.pathname === '/dashboard';
+  const isDashboard = location.pathname.includes('dashboard');
 
   return (
     <>

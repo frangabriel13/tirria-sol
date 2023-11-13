@@ -21,10 +21,10 @@ function ProductForm({getProducts}) {
     images: [],
     price: 0,
     stock: 0,
-    categoryId: "",
-    imgMain: "",
-    isVariable: false,
-    availability: true,
+    categories: [],
+    image: "",
+    isVariant: false,
+    available: true,
     variations: [],
   });
   const [imagesData, setImagesData] = useState([]);
@@ -68,18 +68,18 @@ function ProductForm({getProducts}) {
       newErrors.price = "El precio debe ser mayor que 0";
     }
 
-    if (!formData.categoryId) {
-      newErrors.categoryId = "Selecciona una categoría";
+    if (formData.categories.length === 0) {
+      newErrors.categories = "Debes seleccionar al menos una categoría";
     }
 
     if (formData.images.length === 0) {
       newErrors.images = "Debes seleccionar al menos una imagen";
     }
 
-    if (formData.isVariable && formData.variations.length === 0) {
+    if (formData.isVariant && formData.variations.length === 0) {
       newErrors.variations = "Si es variable, debe tener al menos una variación";
     }
-    if (formData.isVariable && formData.variations.length > 0) {
+    if (formData.isVariant && formData.variations.length > 0) {
       formData.variations.forEach((variation) => {
         if (!variation.sizeId) {
           newErrors.variations = "Si es variable, debe tener al menos una variación";
@@ -110,10 +110,10 @@ function ProductForm({getProducts}) {
       images: [],
       price: 0,
       stock: 0,
-      categoryId: "",
-      imgMain: "",
-      isVariable: false,
-      availability: true,
+      categories: [],
+      image: "",
+      isVariant: false,
+      available: true,
       variations: [],
     });
     setSelectedSizes([]);
@@ -133,20 +133,20 @@ function ProductForm({getProducts}) {
     }
   };
 
-  // const handleSelectColor = (e) => {
-  //   const colorId = e.target.value;
-  //   const colorName = e.target.options[e.target.selectedIndex].getAttribute("name");
-  
-  //   if (colorId && !selectedColors.some((color) => color.id === colorId)) {
-  //     const color = { id: colorId, name: colorName };
-  //     setSelectedColors([...selectedColors, color]);
-  //   }
-  // };
-
   const handleRemoveSize = (sizeId) => {
     const newSelectedSizes = selectedSizes.filter((size) => size.id !== sizeId);
     setSelectedSizes(newSelectedSizes);
   };
+
+  const handleChangeCategories = (e) => {
+    const selectedCategory = e.target.value;
+    if (!formData.categories.includes(selectedCategory)) {
+      // Agrega la nueva categoría al array
+      setFormData({ ...formData, categories: [...formData.categories, { id: selectedCategory }] });
+    }
+  };
+
+  console.log(formData)
 
   return (
     <div className={s.container}>
@@ -180,21 +180,12 @@ function ProductForm({getProducts}) {
           />
           { errors.price && <p className={s.error}>{errors.price}</p> }
         </div>
-        {/* <div className={s.input}>
-          <label htmlFor="stock">Stock:</label>
-          <input 
-            type="number" 
-            name="stock" 
-            value={formData.stock} 
-            onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-          />
-        </div> */}
         <div className={s.input}>
-          <label htmlFor="category">Categoría:</label>
+          <label htmlFor="category">Categorías:</label>
           <select 
             name="category" 
-            value={formData.categoryId} 
-            onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
+            value={formData.categories} 
+            onChange={handleChangeCategories}
           >
             <option value="">Seleccionar</option>
             {
@@ -203,7 +194,7 @@ function ProductForm({getProducts}) {
               ))
             }
           </select>
-          { errors.categoryId && <p className={s.error}>{errors.categoryId}</p> }
+          { errors.categories && <p className={s.error}>{errors.categories}</p> }
         </div>
         <div className={s.input}>
           <label htmlFor="image">Imágenes:</label>
@@ -230,11 +221,11 @@ function ProductForm({getProducts}) {
                     <label>
                       <input
                         type="radio"
-                        name="imgMain"
+                        name="image"
                         value={el.url} // Puedes usar otro identificador único aquí si es necesario
-                        checked={formData.imgMain === el.url} // Marca como seleccionada si es la imagen principal
+                        checked={formData.image === el.url} // Marca como seleccionada si es la imagen principal
                         onChange={(e) =>
-                          setFormData({ ...formData, imgMain: e.target.value })
+                          setFormData({ ...formData, image: e.target.value })
                         }
                       />
                       Elegir principal
@@ -248,37 +239,28 @@ function ProductForm({getProducts}) {
           </div>
         </div>
         <div className={s.input}>
-          <label htmlFor="availability">Habilitado:</label>
+          <label htmlFor="available">Habilitado:</label>
           <input 
             type="checkbox" 
-            name="availability" 
-            checked={formData.availability} 
-            onChange={(e) => setFormData({ ...formData, availability: e.target.checked })}
+            name="available" 
+            checked={formData.available} 
+            onChange={(e) => setFormData({ ...formData, available: e.target.checked })}
           />
         </div>
-        <div className={s.variationCOntainer}>
+        <div className={s.variationContainer}>
           <h3>Añadir variaciones:</h3>
           <div className={s.input}>
             <label htmlFor="variable">Variable:</label>
             <input 
               type="checkbox" 
               name="variable" 
-              checked={formData.isVariable} 
-              onChange={(e) => setFormData({ ...formData, isVariable: e.target.checked })}
+              checked={formData.isVariant} 
+              onChange={(e) => setFormData({ ...formData, isVariant: e.target.checked })}
             />
           </div>
           {
-            formData.isVariable && (
+            formData.isVariant && (
               <div className={s.formData}>
-                {/* <div className={s.input}>
-                  <label htmlFor="availability">Disponibilidad:</label>
-                  <input 
-                    type="checkbox" 
-                    name="availability" 
-                    checked={formData.availability} 
-                    onChange={(e) => setFormData({ ...formData, availability: e.target.checked })}
-                  />
-                </div> */}
                 <div className={s.input}>
                   <label htmlFor="size">Talle:</label>
                   <select
@@ -314,38 +296,6 @@ function ProductForm({getProducts}) {
                     </ul>
                   </div>
                 </div>
-                {/* <div className={s.input}>
-                  <label htmlFor="color">Color:</label>
-                  <select
-                    name="color"
-                    value={selectedColorId}
-                    onChange={(e) => {
-                      setSelectedColorId(e.target.value);
-                      handleSelectColor(e);
-                    }}
-                  >
-                    <option value="">Seleccionar</option>
-                    {
-                      colors.map((el) => (
-                        <option
-                          key={el.id}
-                          value={el.id}
-                          name={el.name}
-                        >{el.name}</option>
-                      ))
-                    }
-                  </select>
-                  <div>
-                    <h5>Colores seleccionados:</h5>
-                    <ul>
-                      {
-                        selectedColors.map((el) => (
-                          <li key={el.id}>{el.name}</li>
-                        ))
-                      }
-                    </ul>
-                  </div>
-                </div> */}
                 <button
                   type="button"
                   onClick={() => setCombinedActive(true)}
