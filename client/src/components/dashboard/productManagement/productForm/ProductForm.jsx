@@ -145,13 +145,6 @@ function ProductForm({getProducts}) {
     setSelectedSizes(newSelectedSizes);
   };
 
-  // const handleChangeCategories = (e) => {
-  //   const selectedCategory = e.target.value;
-  //   if (!formData.categories.includes(selectedCategory)) {
-  //     // Agrega la nueva categoría al array
-  //     setFormData({ ...formData, categories: [...formData.categories, { id: selectedCategory }] });
-  //   }
-  // };
   const handleChangeCategories = (e) => {
     const selectedCategoryId = e.target.value;
     if (!formData.categories.some(cat => cat.id === selectedCategoryId)) {
