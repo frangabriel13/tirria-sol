@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import s from "./Banner.module.css";
-import imgOne from "../../assets/2.png";
-import imgTwo from "../../assets/3.png";
-import imgThree from "../../assets/1.png";
+import imgOne from "../../assets/slider1.png";
+import imgTwo from "../../assets/slider2.png";
+import imgThree from "../../assets/slider3.png";
 
 function Banner() {
   const [currentSlide, setCurrentSlide] = useState(0);

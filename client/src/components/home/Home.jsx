@@ -7,13 +7,12 @@ import Info from "../Info/Info";
 import ProductDetail from "../productDetails/ProductDetails";
 
 function Home() {
-  const productId = 1; // Puedes cambiar esto al ID que desees pasar
+ 
 
   return (
     <div className={s.container}>
       <Banner />
       <Info />
-      <ProductDetail productId={productId} />
       <Cards />
       
     </div>
