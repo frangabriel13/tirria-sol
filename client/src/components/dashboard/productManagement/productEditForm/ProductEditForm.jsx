@@ -15,10 +15,10 @@ function EditProductForm({ product, onCancelEdit }) {
     images: product.images,
     price: product.price,
     stock: product.stock,
-    categoryId: product.categoryId,
-    imgMain: product.imgMain,
-    isVariable: product.isVariable,
-    availability: product.availability,
+    categories: product.categories,
+    image: product.imgMain,
+    isVariant: product.isVariable,
+    available: product.availability,
     variations: []
   });
 
@@ -66,26 +66,53 @@ function EditProductForm({ product, onCancelEdit }) {
           />
         </div>
         <div className={s.divInput}>
-          <label htmlFor="category">Categoría:</label>
+          <label htmlFor="categories">Categorías:</label>
           <select 
-            name="category" 
-            value={formData.categoryId} 
-            onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
+            name="categories" 
+            value={formData.categories.map(cat => cat.id)} 
+            onChange={(e) => {
+              const selectedCategoryIds = Array.from(e.target.selectedOptions, option => option.value);
+              const selectedCategories = categories.filter(cat => selectedCategoryIds.includes(cat.id.toString()));
+
+              // Filtra las categorías seleccionadas que no están ya presentes en el estado
+              const newCategories = selectedCategories.filter(cat => !formData.categories.some(existingCat => existingCat.id === cat.id));
+
+              setFormData(prevData => ({ ...prevData, categories: [...prevData.categories, ...newCategories] }));
+            }}
           >
-            {
-              categories.map((el) => (
-                <option key={el.id} value={el.id}>{el.name}</option>
-              ))
-            }
+            {categories.map((el) => (
+              <option key={el.id} value={el.id}>
+                {el.name}
+              </option>
+            ))}
           </select>
+          <div>
+            <h4>Categorías seleccionadas:</h4>
+            <ul>
+              {formData.categories.map(selectedCategory => (
+                <div key={selectedCategory.id}>
+                  <li>{selectedCategory.name}</li>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const updatedCategories = formData.categories.filter(cat => cat.id !== selectedCategory.id);
+                      setFormData({ ...formData, categories: updatedCategories });
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </ul>
+          </div>
         </div>
         <div>
-          <label htmlFor="availability">Habilidado:</label>
+          <label htmlFor="available">Habilidado:</label>
           <input 
             type="checkbox" 
-            name="availability" 
-            checked={formData.availability} 
-            onChange={(e) => setFormData({ ...formData, availability: e.target.checked })}
+            name="available" 
+            checked={formData.available} 
+            onChange={(e) => setFormData({ ...formData, available: e.target.checked })}
           />
         </div>
         <div className={s.divButton}>
