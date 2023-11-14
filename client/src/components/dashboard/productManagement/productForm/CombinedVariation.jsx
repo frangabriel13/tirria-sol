@@ -25,7 +25,7 @@ function createCombinedVariation() {
           color: {id: color.id, name: color.name},
           price: formData.price,
           stock: formData.stock,
-          availability: formData.availability,
+          available: formData.available,
           images: []
         });
       });
@@ -38,7 +38,7 @@ function createCombinedVariation() {
         color: null,
         price: formData.price,
         stock: formData.stock,
-        availability: formData.availability,
+        available: formData.available,
         images: []
       });
     });
@@ -50,7 +50,7 @@ function createCombinedVariation() {
         color: {id: color.id, name: color.name},
         price: formData.price,
         stock: formData.stock,
-        availability: formData.availability,
+        available: formData.available,
         images: []
       });
     });
@@ -61,7 +61,7 @@ function createCombinedVariation() {
       color: null,
       price: formData.price,
       stock: formData.stock,
-      availability: formData.availability,
+      available: formData.available,
       images: []
     });
   }
@@ -77,13 +77,13 @@ function createCombinedVariation() {
       colorId: variation.color ? parseInt(variation.color.id, 10) : null,
       price: variation.price,
       stock: variation.stock,
-      availability: variation.availability,
+      available: variation.available,
       images: []
     })),
   };
 
   // Actualiza formData solo si es un producto variable
-  if (formData.isVariable) {
+  if (formData.isVariant) {
     const updatedFormData = {
       ...formData,
       ...allVariations, // Agrega las variaciones al formData

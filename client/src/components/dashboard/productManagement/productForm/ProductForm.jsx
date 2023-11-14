@@ -88,7 +88,7 @@ function ProductForm({getProducts}) {
     }
     if (formData.isVariant && formData.variations.length > 0) {
       formData.variations.forEach((variation) => {
-        if (!variation.sizeId) {
+        if (!variation.size) {
           newErrors.variations = "Si es variable, debe tener al menos una variación";
         }
       });
@@ -127,7 +127,7 @@ function ProductForm({getProducts}) {
     setSelectedColors([]);
     setCombinedActive(false);
     // Después de la creación, obtén la lista de productos actualizada
-    dispatch(getProducts());
+    await dispatch(getProducts());
   };
 
   const handleSelectSize = (e) => {

@@ -162,7 +162,7 @@ const ProductManagement = () => {
                 >
                   <option>Seleccionar</option>
                   {
-                    allProducts.filter((el) => el.isVariable).map((el) => (
+                    allProducts.filter((el) => el.isVariant).map((el) => (
                       <option key={el.id} value={el.id}>{el.name}</option>
                     ))
                   }
