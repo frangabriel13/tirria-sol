@@ -145,15 +145,26 @@ function ProductForm({getProducts}) {
     setSelectedSizes(newSelectedSizes);
   };
 
+  // const handleChangeCategories = (e) => {
+  //   const selectedCategory = e.target.value;
+  //   if (!formData.categories.includes(selectedCategory)) {
+  //     // Agrega la nueva categoría al array
+  //     setFormData({ ...formData, categories: [...formData.categories, { id: selectedCategory }] });
+  //   }
+  // };
   const handleChangeCategories = (e) => {
-    const selectedCategory = e.target.value;
-    if (!formData.categories.includes(selectedCategory)) {
-      // Agrega la nueva categoría al array
-      setFormData({ ...formData, categories: [...formData.categories, { id: selectedCategory }] });
+    const selectedCategoryId = e.target.value;
+    if (!formData.categories.some(cat => cat.id === selectedCategoryId)) {
+      // Agrega el nuevo ID de categoría al array
+      setFormData({ ...formData, categories: [...formData.categories, { id: selectedCategoryId }] });
     }
   };
 
-  console.log(formData)
+  const handleRemoveCategory = (categoryId) => {
+    const newSelectedCategories = formData.categories.filter((cat) => cat.id != categoryId);
+    console.log(newSelectedCategories);
+    setFormData({ ...formData, categories: newSelectedCategories });
+  };
 
   return (
     <div className={s.container}>
@@ -202,6 +213,22 @@ function ProductForm({getProducts}) {
             }
           </select>
           { errors.categories && <p className={s.error}>{errors.categories}</p> }
+          <div>
+            <h4>Categorías seleccionadas:</h4>
+            <ul>
+              {/* {console.log(formData.categories)} */}
+              {
+                categories
+                  .filter(cat => formData.categories.some(selectedCat => Number(selectedCat.id) === cat.id))
+                  .map(selectedCategory => (
+                    <div>
+                      <li key={selectedCategory.id}>{selectedCategory.name}</li>
+                      <button type="button" onClick={() => handleRemoveCategory(selectedCategory.id)}>X</button>
+                    </div>
+                  ))
+              }
+            </ul>
+          </div>
         </div>
         <div className={s.input}>
           <label htmlFor="image">Imágenes:</label>

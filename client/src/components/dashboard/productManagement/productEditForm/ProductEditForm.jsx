@@ -79,17 +79,6 @@ function EditProductForm({ product, onCancelEdit }) {
             }
           </select>
         </div>
-        {/* <div className={s.divInputImg}>
-          <label htmlFor="image">Imágenes:</label>
-          {
-            formData.images.map((el, i) => (
-              <div key={i} className={s.imgDiv}>
-                <img src={el.url} alt="Imagen de producto" />
-                <button type="button" onClick={() => setFormData({ ...formData, images: formData.images.filter((img) => img !== el) })}>X</button>
-              </div>
-            ))
-          }
-        </div> */}
         <div>
           <label htmlFor="availability">Habilidado:</label>
           <input 
