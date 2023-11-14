@@ -26,6 +26,7 @@ export const getProductById = (id) => async (dispatch) => {
 
 export const addProduct = (product) => async (dispatch) => {
   try {
+    console.log(product)
     const response = instance.post('/products', product);
     dispatch({
       type: 'ADD_PRODUCT',

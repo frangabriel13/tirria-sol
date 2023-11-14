@@ -88,7 +88,7 @@ function ProductForm({getProducts}) {
     }
     if (formData.isVariant && formData.variations.length > 0) {
       formData.variations.forEach((variation) => {
-        if (!variation.sizeId) {
+        if (!variation.size) {
           newErrors.variations = "Si es variable, debe tener al menos una variación";
         }
       });
@@ -127,7 +127,7 @@ function ProductForm({getProducts}) {
     setSelectedColors([]);
     setCombinedActive(false);
     // Después de la creación, obtén la lista de productos actualizada
-    dispatch(getProducts());
+    await dispatch(getProducts());
   };
 
   const handleSelectSize = (e) => {
@@ -145,13 +145,6 @@ function ProductForm({getProducts}) {
     setSelectedSizes(newSelectedSizes);
   };
 
-  // const handleChangeCategories = (e) => {
-  //   const selectedCategory = e.target.value;
-  //   if (!formData.categories.includes(selectedCategory)) {
-  //     // Agrega la nueva categoría al array
-  //     setFormData({ ...formData, categories: [...formData.categories, { id: selectedCategory }] });
-  //   }
-  // };
   const handleChangeCategories = (e) => {
     const selectedCategoryId = e.target.value;
     if (!formData.categories.some(cat => cat.id === selectedCategoryId)) {
