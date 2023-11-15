@@ -35,6 +35,7 @@ function createCombinedVariation() {
     selectedSizes.forEach((size) => {
       newCombinedVariation.push({ 
         size: {id: size.id, name: size.name},
+        sizeId: size.id,
         color: null,
         price: formData.price,
         stock: formData.stock,
@@ -88,7 +89,7 @@ function createCombinedVariation() {
       ...formData,
       ...allVariations, // Agrega las variaciones al formData
     };
-    // console.log('updated: ', updatedFormData)
+    console.log('updated: ', updatedFormData)
     setFormData(updatedFormData);
   } else {
     // Si no es un producto variable, asegúrate de eliminar las variaciones del formData
@@ -120,6 +121,7 @@ const handlePriceChange = (e, index) => {
     variations: newCombinedVariation.map((variation, i) => ({
       ...variation,
       sizeId: selectedSizes[i] ? parseInt(selectedSizes[i].id, 10) : null,
+      // sizeId: variation.size ? parseInt(variation.size.id, 10) : null,
     })),
   };
   setFormData(updatedFormData);

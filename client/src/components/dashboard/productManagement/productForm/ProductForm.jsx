@@ -88,7 +88,7 @@ function ProductForm({getProducts}) {
     }
     if (formData.isVariant && formData.variations.length > 0) {
       formData.variations.forEach((variation) => {
-        if (!variation.size) {
+        if (!variation.sizeId) {
           newErrors.variations = "Si es variable, debe tener al menos una variación";
         }
       });
@@ -158,7 +158,7 @@ function ProductForm({getProducts}) {
     setFormData({ ...formData, categories: newSelectedCategories });
   };
 
-  console.log(formData)
+  console.log('formData: ', formData)
 
   return (
     <div className={s.container}>
