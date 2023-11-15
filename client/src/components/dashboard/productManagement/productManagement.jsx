@@ -53,8 +53,9 @@ const ProductManagement = () => {
     setEditingProduct(productToEdit);
   }
 
-  const handleCancelEdit = () => {
+  const handleCancelEdit = async () => {
     setEditingProduct(null);
+    await dispatch(getProducts());
   }
 
   const handleDeleteProduct = (id) => {
