@@ -78,25 +78,49 @@ const ProductManagement = () => {
     }
   };
 
-  const handleUpdateVariation = (e) => {
+  // const handleUpdateVariation = (e) => {
+  //   e.preventDefault();
+  
+  //   // Verifica que la variación que se está editando esté definida
+  //   if (editingVariation) {
+  //     // Crea un objeto con la nueva información de la variación, incluido el nuevo precio
+  //     const updatedVariation = {
+  //       ...editingVariation,
+  //       price: parseFloat(newVariationPrice), // Convierte el nuevo precio a un número flotante
+  //       available: editingVariation.available,
+  //     };
+  
+  //     // Llama a la acción para actualizar la variación en el estado global
+  //     dispatch(updateVariation(updatedVariation))
+  //       .then(() => {
+  //         // Luego de la actualización exitosa, obtén la lista de variaciones actualizada
+  //         dispatch(getVariations());
+  //       });
+
+  //     // Limpia el estado de newVariationPrice y cancela la edición
+  //     setNewVariationPrice("");
+  //     setEditingVariation(null);
+  //   }
+  // };
+  const handleUpdateVariation = async (e) => {
     e.preventDefault();
   
-    // Verifica que la variación que se está editando esté definida
     if (editingVariation) {
-      // Crea un objeto con la nueva información de la variación, incluido el nuevo precio
       const updatedVariation = {
         ...editingVariation,
-        price: parseFloat(newVariationPrice), // Convierte el nuevo precio a un número flotante
+        price: parseFloat(newVariationPrice),
         available: editingVariation.available,
       };
   
-      // Llama a la acción para actualizar la variación en el estado global
-      dispatch(updateVariation(updatedVariation))
-        .then(() => {
-          // Luego de la actualización exitosa, obtén la lista de variaciones actualizada
-          dispatch(getVariations());
-        });
-
+      // Primero, llama a la acción para actualizar la variación en el estado global
+      // console.log('ed:', editingVariation)
+      // console.log('up: ', updatedVariation)
+      await dispatch(updateVariation(updatedVariation));
+  
+      // Después de la actualización exitosa, obtén la lista de variaciones actualizada
+      await dispatch(getProducts())
+      await dispatch(getVariations());
+  
       // Limpia el estado de newVariationPrice y cancela la edición
       setNewVariationPrice("");
       setEditingVariation(null);

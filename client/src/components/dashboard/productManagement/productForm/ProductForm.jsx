@@ -158,8 +158,6 @@ function ProductForm({getProducts}) {
     setFormData({ ...formData, categories: newSelectedCategories });
   };
 
-  console.log('formData: ', formData)
-
   return (
     <div className={s.container}>
       <h2>Crear Producto</h2>
