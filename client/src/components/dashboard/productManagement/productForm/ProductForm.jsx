@@ -155,9 +155,10 @@ function ProductForm({getProducts}) {
 
   const handleRemoveCategory = (categoryId) => {
     const newSelectedCategories = formData.categories.filter((cat) => cat.id != categoryId);
-    console.log(newSelectedCategories);
     setFormData({ ...formData, categories: newSelectedCategories });
   };
+
+  console.log(formData)
 
   return (
     <div className={s.container}>
@@ -209,7 +210,6 @@ function ProductForm({getProducts}) {
           <div>
             <h4>Categorías seleccionadas:</h4>
             <ul>
-              {/* {console.log(formData.categories)} */}
               {
                 categories
                   .filter(cat => formData.categories.some(selectedCat => Number(selectedCat.id) === cat.id))
