@@ -89,7 +89,6 @@ function createCombinedVariation() {
       ...formData,
       ...allVariations, // Agrega las variaciones al formData
     };
-    console.log('updated: ', updatedFormData)
     setFormData(updatedFormData);
   } else {
     // Si no es un producto variable, asegúrate de eliminar las variaciones del formData
