@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./ProductEditForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../../../redux/actions/categoryActions";
-import { updateProduct } from "../../../../redux/actions/productActions";
+import { getProducts, updateProduct } from "../../../../redux/actions/productActions";
 
 function EditProductForm({ product, onCancelEdit }) {
   const dispatch = useDispatch()
@@ -31,6 +31,7 @@ function EditProductForm({ product, onCancelEdit }) {
 
     try {
       await dispatch(updateProduct(formData));
+      await dispatch(getProducts());
       onCancelEdit()
     } catch(error) {
       console.log('Error al editar el producto:', error)
