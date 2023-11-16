@@ -10,26 +10,37 @@ const ProductDetail = ({ productId }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const product = useSelector((state) => state.product.productById);
-  console.log(product);
+console.log(product.isVariant);
   const variations = useSelector((state) => state.variation.variations);
+
+//  console.log(variations.map((variation) => variation.stock));
   const [selectedImage, setSelectedImage] = useState(null);
   const imagesRef = useRef(null);
 
   const [quantity, setQuantity] = useState(1);
   const [variationQuantities, setVariationQuantities] = useState({});
-  
-  useEffect(() => {
-    setLoading(true); // Indica que se está cargando
-    dispatch(getProductById(productId))
-      .then(() => {
-        setLoading(false); // Indica que la carga ha finalizado
-        dispatch(getVariations(productId)); // Carga las variaciones
-      });
-  }, [dispatch, productId]);
 
   useEffect(() => {
-    dispatch(getVariations(productId))
-  }, []);
+    setLoading(true);
+    dispatch(getProductById(productId))
+      .then(() => {
+        setLoading(false);
+        dispatch(getVariations(productId));
+      });
+  }, [dispatch, productId]);
+  
+  // useEffect(() => {
+  //   setLoading(true); // Indica que se está cargando
+  //   dispatch(getProductById(productId))
+  //     .then(() => {
+  //       setLoading(false); // Indica que la carga ha finalizado
+  //       dispatch(getVariations(productId)); // Carga las variaciones
+  //     });
+  // }, [dispatch, productId]);
+
+  // useEffect(() => {
+  //   dispatch(getVariations(productId))
+  // }, []);
 
   if (loading) return <p>Cargando...</p>
 
@@ -71,12 +82,15 @@ const ProductDetail = ({ productId }) => {
   };
 
   const handleAddToCart = () => {
-    if (product.isVariable) {
+    if (product.isVariant) {
       // Es un producto con variaciones, debes encontrar la variación seleccionada
       const selectedVariations = variations.filter((variation) => {
         const quantity = variationQuantities[variation.id] || 0;
+        
         return quantity > 0;
+        
       });
+    
   
       if (selectedVariations.length === 0) {
         // No se ha seleccionado ninguna variación
@@ -189,7 +203,7 @@ const ProductDetail = ({ productId }) => {
             <h2 className={s.productoDetailName}>{product && product.name}</h2>
             <p className={s.productoDetailPrice}>${product.price}</p>
             {
-              product.isVariable === false ? 
+              product.isVariant === false ? 
               <div className={s.divVariant}>
                 <h3>Seleccione la cantidad:</h3>
                 <div className={s.btnQuantity}>
@@ -204,12 +218,13 @@ const ProductDetail = ({ productId }) => {
               </div> : 
               <div className={s.divVariant}>
                 <h3>Seleccione la cantidad por talle:</h3>
-                {
+                {/* {
                   sortVariations(variations).map((variation) => (
                     <div className={s.divQuantity} key={variation.id}>
-                      <p>{variation && variation.size.name}</p>
+                      <p>{variation && variation.size}</p>
+                      
                       {
-                        variation.availability === true ?
+                        variation.available === true ?
                           <div className={s.btnQuantity}>
                             <button className={s.decrement} onClick={() => handleDecrement(variation)}>-</button>
                             <input type="number"
@@ -224,7 +239,7 @@ const ProductDetail = ({ productId }) => {
                       }
                     </div>
                   ))
-                }
+                } */}
               </div>
             }
             {/* <p className={s.cantTotal}>Total:   ${calculateTotal(product, quantity, variations, variationQuantities)}</p> */}
@@ -239,11 +254,11 @@ const ProductDetail = ({ productId }) => {
           </div>
         </div>
       </div>
-      <div className={s.divDescription}>
+      {/* <div className={s.divDescription}>
         <p className={s.productoDetailDescription}>
           Description: {product.description && product.description.text}
         </p>
-      </div>
+      </div> */}
       <h2 className={s.relacionados}>Productos relacionados</h2>
     </div>
   ) 
