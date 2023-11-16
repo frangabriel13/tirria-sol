@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductById } from '../../redux/actions/productActions';
 import s from './ProductDetails.module.css';
 import { getVariations } from '../../redux/actions/variationActions';
-//import { calculateTotal, randomPhoneNumber } from '../../utils/helpers';
-//import { addToCart } from '../../redux/actions/cartActions';
+import { calculateTotal, randomPhoneNumber } from '../../utils/helpers';
+import { addToCart } from '../../redux/actions/cartActions';
 
 const ProductDetail = ({ productId }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const product = useSelector((state) => state.product.productById);
-console.log(product.isVariant);
   const variations = useSelector((state) => state.variation.variations);
 
-//  console.log(variations.map((variation) => variation.stock));
   const [selectedImage, setSelectedImage] = useState(null);
   const imagesRef = useRef(null);
 
@@ -130,16 +128,6 @@ console.log(product.isVariant);
     window.open(whatsappUrl, '_blank');
   };
 
-  // const sortVariations = (variations) => {
-  //   // Utiliza el método sort para ordenar las variaciones por tamaño.
-  //   return variations.sort((a, b) => {
-  //     const sizeA = a.size.name.toLowerCase();
-  //     const sizeB = b.size.name.toLowerCase();
-  //     if (sizeA < sizeB) return -1;
-  //     if (sizeA > sizeB) return 1;
-  //     return 0;
-  //   });
-  // };
   const sortVariations = (variations) => {
     return variations.sort((a, b) => {
       const sizeA = a.size ? a.size.name.toLowerCase() : '';
@@ -218,10 +206,10 @@ console.log(product.isVariant);
               </div> : 
               <div className={s.divVariant}>
                 <h3>Seleccione la cantidad por talle:</h3>
-                {/* {
+                {
                   sortVariations(variations).map((variation) => (
                     <div className={s.divQuantity} key={variation.id}>
-                      <p>{variation && variation.size}</p>
+                      <p>{variation && variation.size.name}</p>
                       
                       {
                         variation.available === true ?
@@ -239,10 +227,10 @@ console.log(product.isVariant);
                       }
                     </div>
                   ))
-                } */}
+                }
               </div>
             }
-            {/* <p className={s.cantTotal}>Total:   ${calculateTotal(product, quantity, variations, variationQuantities)}</p> */}
+            <p className={s.cantTotal}>Total:   ${calculateTotal(product, quantity, variations, variationQuantities)}</p>
             <button className={s.buttonCart} onClick={handleAddToCart}>Agregar al carrito</button>
             <br/>
             <button
@@ -254,11 +242,11 @@ console.log(product.isVariant);
           </div>
         </div>
       </div>
-      {/* <div className={s.divDescription}>
+      <div className={s.divDescription}>
         <p className={s.productoDetailDescription}>
-          Description: {product.description && product.description.text}
+          Description: {product.description && product.description}
         </p>
-      </div> */}
+      </div>
       <h2 className={s.relacionados}>Productos relacionados</h2>
     </div>
   ) 
