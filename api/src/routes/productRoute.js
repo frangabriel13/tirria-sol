@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         {
           model: Variation,
           as: 'variations',
-          attributes: ['id', 'stock', 'price', 'available'],
+          attributes: ['id', 'stock', 'price', 'available', 'sizeId', 'colorId'],
         },
         {
           model: Category,
