@@ -8,7 +8,7 @@ function Detail() {
   const location = useLocation();
   const id = location.pathname.split('/').pop(); // Obtén el último segmento de la URL como el ID
   
-
+console.log(id)
 
   return (
     <div className={s.container}>
