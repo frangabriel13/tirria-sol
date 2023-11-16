@@ -4,6 +4,7 @@ import Home from './components/home/Home';
 import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/navbar/Navbar';
 import Detail from './components/detail/Detail';
+import Login from './components/login/Login';
 
 function App() {
   const location = useLocation();
@@ -16,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
-        <Route path='/products/:id' element={<Detail />} /> 
+        <Route path='/products/:id' element={<Detail />} />
+        <Route path='/login-admin' element={<Login />} /> 
       </Routes>
     </>
   );
