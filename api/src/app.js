@@ -16,7 +16,7 @@ const app = express();
 app.name = 'API';
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'http://tirriasolflores.com/',
   credentials: true
 };
 app.use(cors(corsOptions));
