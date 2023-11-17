@@ -5,7 +5,7 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import SideBar from "./sideBar/SideBar";
 import Gallery from "./gallery/Gallery";
 import Configuration from "./configuration/Configuration";
-import ProductManagement from "./productManagement/ProductManagement";
+import ProductManagement from "./productManagement/productManagement";
 import General from "./general/General";
 
 const Dashboard = () => {
