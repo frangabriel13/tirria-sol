@@ -2,7 +2,7 @@ import React from "react";
 import s from './Detail.module.css';
 import ProductDetail from "../productDetails/ProductDetails";
 import { useLocation } from 'react-router-dom';
-// import CardFour from "../cardsFour/CardFour";
+import FourCard from "../fourCard/FourCard";
 
 function Detail() {
   const location = useLocation();
@@ -13,7 +13,7 @@ console.log(id)
   return (
     <div className={s.container}>
       <ProductDetail productId={id} />
-      {/* <CardFour /> */}
+      <FourCard />
     </div>
   )
 }
