@@ -1,0 +1,113 @@
+/* Estilos para el componente Contacto */
+.contactoContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.contactoTitle {
+  font-size: 2.2rem;
+  color: #000000;
+  margin-top: 0;
+}
+
+.contactoText {
+  font-size: 1.6rem;
+  color: #666;
+  margin: 0;
+}
+
+.contactoList {
+  list-style: none;
+  padding: 0;
+}
+
+.contactoList li {
+  font-size: 1.6rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.contactoLink {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.contactoLink:hover {
+  text-decoration: underline;
+}
+
+.contactoMapa {
+  grid-column: span 2;
+  /* Estilos para el mapa de Google, ajusta según tus necesidades */
+}
+
+/* Estilos para el botón de contacto */
+.contact-button {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1.6rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-button:hover {
+  background-color: #000000;
+}
+
+.socialMedia {
+  margin-bottom: 1.5rem;
+}
+
+.socialMedia a {
+  color: #000000;
+  font-size: 3.4rem;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.links {
+  font-size: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0.5rem 2rem;
+}
+
+.copyRight {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+}
+
+/* Media query para ajustar el estilo en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .links a {
+    margin: 0.5rem 0;
+  }
+}

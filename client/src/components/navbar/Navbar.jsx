@@ -23,18 +23,18 @@ const Navbar = () => {
         <ul>
           <li><a href="/">Inicio</a></li>
           <li><a href="/tienda">Tienda</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="/contacto">Contacto</a></li>
         </ul>
       </div>
 
       {/* Coloca el componente Search aquí */}
       <Search />
-
+    <div  className={s.itemsnav}>
       <div className={s.cart}>
-        {/* Agrega un enlace a la página del carrito */}
+    
         <Link to="/cart">
           <i className={`bi bi-cart ${s.icon}`}></i>
-          {/* Muestra la cantidad de elementos en el carrito */}
+         
           {cartCount > 0 && <span className={s.cartCount}>{cartCount}</span>}
         </Link>
       </div>
@@ -50,7 +50,8 @@ const Navbar = () => {
           <i className={`bi bi-instagram ${s.icon}`}></i>
         </a>
       </div>
-    </nav>
+    </div>
+ </nav>
   );
 };
 
