@@ -223,8 +223,6 @@ a {
 
   .container {
     background-color: #f9457f;
-    margin-top: 1rem;
-    padding-right: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -234,6 +232,7 @@ a {
   }
 
   .navContainer {
+    padding-right: 20rem;
     width: 30%;
     display: flex;
     margin-bottom: 1rem;

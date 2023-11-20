@@ -4,9 +4,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #d2d2d2;
+  background: linear-gradient(to right, #ffffff, #000000, #ffd700);
+  /* Ajusta los colores según tus preferencias */
+
+  padding: 1rem;
   color: #dd0000;
   border-bottom: #000000 3px solid;
+}
+/* Media query para pantallas pequeñas (móviles) */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background: linear-gradient(to right, #000000, #ffffff, #ffd700);
+    /* Ajusta los colores según tus preferencias */
+  }
 }
 
 .cartCount {
@@ -36,9 +46,9 @@
 
 .menu a {
   text-decoration: none;
-  color: #272727;
+  color: #000000;
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 /* Estilo de las Redes Sociales */
@@ -58,10 +68,18 @@
 }
 
 /* Estilo del Icono del Carrito */
+/* Estilo del Carrito */
 .cart {
-  position: relative;
+  margin-right: 5rem; /* Añade espacio entre el carrito y las redes sociales */
 }
 
+.cart a {
+  display: flex; /* Alinea los íconos del carrito verticalmente al centro */
+  align-items: center;
+  text-decoration: none;
+  color: #272727;
+  font-size: 1.6rem;
+}
 .icon {
   color: #000000;
   font-size: 2rem;
@@ -73,13 +91,19 @@
     flex-direction: column; /* Cambia la dirección de los elementos a columna en pantallas pequeñas */
     text-align: center; /* Centra el contenido en pantallas pequeñas */
   }
+  .menu {
+    margin-bottom: 3rem;
+  }
 
   .menu ul {
     margin-top: 1rem; /* Añade espacio entre el logo y el menú en pantallas pequeñas */
   }
 
-  .cart {
-    margin-top: 1rem; /* Añade espacio entre el menú y el carrito en pantallas pequeñas */
-  }
+ 
 }
-
+/* Asegúrate de que itemsnav tenga display: flex y flex-wrap: nowrap */
+.itemsnav {
+  display: flex;
+  flex-wrap: nowrap; /* No permite que los elementos se envuelvan en varias filas */
+  align-items: center; /* Alinea los elementos verticalmente al centro */
+}
