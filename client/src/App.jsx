@@ -8,6 +8,7 @@ import Login from './components/login/Login';
 import Categories from './components/categories/categories';
 import ProductsByCategory from './components/productByCategory/ProductByCategory';
 import Search from './components/search/Search';
+import Cart from './components/cart/Cart';
 
 function App() {
   const location = useLocation();
@@ -24,7 +25,8 @@ function App() {
         <Route path='/login-admin' element={<Login />} /> 
         <Route path='/categories' element={<Categories />} /> 
         <Route path='/categories/:categoryId' element={<ProductsByCategory/>} />
-        <Route path='/search' element={<Search />} /> 
+        <Route path='/search' element={<Search />} />
+        <Route path='/cart' element={<Cart/>} />
       </Routes>
     </>
   );
