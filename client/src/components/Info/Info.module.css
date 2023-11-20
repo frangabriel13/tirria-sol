@@ -55,7 +55,7 @@
   margin-bottom: 5rem;
   display: inline-block;
   padding: 10px 20px;
-  background-color: #f9457f; /* Color de fondo del botón */
+  background-color: #000000; /* Color de fondo del botón */
   color: #ffffff; /* Color del texto */
   text-decoration: none; /* Quita la decoración de subrayado del enlace */
   border: none;
@@ -132,8 +132,8 @@
 
   /* Estilos para el texto del botón de Instagram en pantallas más pequeñas */
   .tittle {
-    margin-left: 0; /* Eliminar el margen izquierdo */
-    margin-right: 0; /* Eliminar el margen derecho */
+    margin-left: 1rem; /* Eliminar el margen izquierdo */
+    margin-right: 1rem; /* Eliminar el margen derecho */
   }
 }
 

@@ -54,7 +54,7 @@
   margin: 0.25rem;
   padding: 0.25rem 0.5rem;
   background-color: #ffffff;
-  border: 1px solid #f9457f;
+  border: 1px solid #020202;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -67,9 +67,9 @@
 .activePage {
   margin: 0.25rem;
   padding: 0.25rem 0.5rem;
-  background-color: #f9457f;
+  background-color: #000000;
   color: #fff;
-  border: 1px solid #f9457f;
+  border: 1px solid #ffffff;
   border-radius: 4px;
   cursor: pointer;
 }

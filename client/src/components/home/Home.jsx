@@ -4,6 +4,7 @@ import Cards from "../cards/Cards";
 import Banner from "../banner/Banner";
 import Info from "../Info/Info";
 import Categories from "../categories/Categories";
+import Footer from "../footer/Footer";
 
 
 function Home() {
@@ -15,7 +16,7 @@ function Home() {
       <Info />
       <Categories />
       <Cards />
-      
+      <Footer />  
     </div>
   );
 }

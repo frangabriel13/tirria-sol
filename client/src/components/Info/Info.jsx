@@ -21,7 +21,7 @@ const Info = () => {
       <div className={s.separator}></div>
       <div className={s.iconContainer}>
         <i className={`bi bi-geo-alt ${s.icon}`}></i>
-        <span className={s.text}>Bogotá 3412, CABA, Zona Flores</span>
+        <span className={s.text}>Emilio Lamarca 343 Loc. 3 y 4, CABA, Zona Flores</span>
       </div>
     </div>
     <div>
