@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-    baseURL: 'https://tirriasolflores.com/api',
+    baseURL: 'http://localhost:3001/api',
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
@@ -9,10 +9,9 @@ export const instance = axios.create({
 });
 
 export const imageInstance = axios.create({
-    baseURL: 'https://tirriasolflores.com/api',
+    baseURL: 'http://localhost:3001/api',
     withCredentials: true,
     headers: {
         'Content-Type': 'multipart/form-data',
     },
 });
-
