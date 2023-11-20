@@ -16,7 +16,7 @@
 /* CSS Contenedor principal */
 .container {
   
-  background-color: #f9457f;
+  background-color: #000000;
   margin-top: 1rem;
   
   margin-left: auto;
@@ -30,7 +30,8 @@
 }
 
 .navContainer {
-  width: 100%;
+  background-color: #000000;
+  width: 20%;
   display: flex;
   margin-bottom: 1rem;
   justify-content: space-between;
@@ -42,7 +43,7 @@
   border: none !important;
   font-size: 2.5rem;
   color: #ffffff;
-  background-color: #f9457f;
+  background-color: #6648d1;
   
 }
 
@@ -171,6 +172,7 @@ a {
 /* CSS Contenedor del campo de búsqueda */
 .searchContainer {
   position: relative;
+ 
   font-size: 2rem;
   border: none !important; /* Elimina el borde */
   
@@ -180,7 +182,7 @@ a {
 }
 .searchInput {
   font-size: 2rem;
-  background-color: #f9457f;
+  background-color: #000000;
   color: white;
 }
 .searchContainer::placeholder {
@@ -190,7 +192,7 @@ a {
 /* CSS Campo de búsqueda */
 .searchContainer input::placeholder {
   color: #ffffff;
-  padding-left: 1rem;
+  
 }
 
 /* Ventana emergente de resultados */
@@ -232,7 +234,7 @@ a {
   }
 
   .navContainer {
-    width: 100%;
+    width: 30%;
     display: flex;
     margin-bottom: 1rem;
     justify-content: space-between;
