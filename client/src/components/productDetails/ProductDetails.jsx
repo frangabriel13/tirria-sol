@@ -18,6 +18,7 @@ const ProductDetail = ({ productId }) => {
   const [quantity, setQuantity] = useState(1);
   const [variationQuantities, setVariationQuantities] = useState({});
 
+
   useEffect(() => {
     setLoading(true);
     dispatch(getProductById(productId))

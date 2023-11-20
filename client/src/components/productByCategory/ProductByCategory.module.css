@@ -1,0 +1,83 @@
+/* Estilos para el contenedor de productos */
+.productsContainer {
+  /* Centrar el contenido horizontalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  border: none !important;
+  background-color: #ffffff !important;
+}
+
+/* Estilos para el título de la categoría */
+.categoryTitle {
+  /* Estilos para el título */
+  height: 15rem;
+  padding-top: 5rem;
+  width: 100%;
+  display: inline-block;
+  background-color: black;
+  color: #ffffff;
+  margin-top: 5rem;
+  font-size: 3rem;
+  margin-bottom: 5rem;
+}
+
+
+
+.productList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  grid-row-gap: 10rem;
+  margin: 2rem auto;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Estilo para tablets (ejemplo: 768px a 1024px) */
+@media (max-width: 1424px) {
+  .productList {
+    grid-template-columns: repeat(3, 1fr); /* Cambia el número de columnas para tablets */
+  }
+}
+
+@media (max-width: 1024px) {
+  .productList {
+    grid-template-columns: repeat(2, 1fr); /* Cambia el número de columnas para tablets */
+  }
+}
+
+/* Estilo para pantallas más pequeñas (ejemplo: menos de 768px) */
+@media (max-width: 768px) {
+  .productList {
+    grid-template-columns: repeat(1, 1fr); /* Cambia el número de columnas para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para la tarjeta de producto (suponiendo que se utiliza la clase "Card") */
+.Card {
+  /* Estilos para la tarjeta de producto */
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Agregar espacio entre las filas */
+  margin-bottom: 20px; /* Puedes ajustar el valor según la cantidad de espacio que desees */
+}
+
+/* Estilos para el mensaje "No hay productos en esta Categoría" */
+.productList h1 {
+  /* Estilos para el mensaje cuando no hay productos */
+  font-size: 18px;
+  color: #999;
+}

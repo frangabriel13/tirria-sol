@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import img from '../../assets/logoTirriaPng.png';
+// import Search from '../search/Search';
 
 const Navbar = () => {
   return (
@@ -15,6 +16,7 @@ const Navbar = () => {
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
+     
       <div className={s.redesociales}>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
           <i className={`bi bi-facebook ${s.icon}`}></i>
