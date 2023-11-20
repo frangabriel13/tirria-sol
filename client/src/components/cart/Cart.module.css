@@ -1,0 +1,174 @@
+/* Estilos generales del carrito */
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Espacio entre elementos en filas en pantallas más grandes */
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column; /* Cambiar a una sola columna en pantallas más pequeñas */
+  }
+
+}
+.cart h2 {
+  color: #333;
+  font-size: 24px;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart ul li {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.cart p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.buttonWP {
+  margin-top: 2rem;
+  background-color: #25d366;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttonWP:hover {
+  background-color: #128c7e;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Espacio entre filas */
+}
+
+.cart-button {
+  background-color: #020202;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.cart-button:hover {
+  background-color: #f9457f;
+}
+
+.buttonClear {
+  margin-top: 2rem;
+  background-color: #f9457f;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.buttonClear:hover {
+  background-color: #e73990;
+}
+
+/* Estilo para la clase 'canti' */
+.canti {
+  padding-left: 2rem;
+  padding-top: 2rem;
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  gap: 1rem;
+}
+
+.canti p {
+  margin: auto;
+}
+
+/* Estilos para los botones de acción (+ y -) */
+.canti button {
+  background-color: #f9457f;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0 5px; /* Espacio entre los botones */
+}
+
+.canti button:hover {
+  background-color: #e73990;
+}
+
+/* Estilo para el input de cantidad */
+.canti input[type="number"] {
+  width: 40px; /* Ancho deseado para el input */
+  padding: 5px;
+  text-align: center;
+}
+
+.totalCompra {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.nombPrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  gap: 1rem;
+}
+
+.nombPrice img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
