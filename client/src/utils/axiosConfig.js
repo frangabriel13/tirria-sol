@@ -15,4 +15,3 @@ export const imageInstance = axios.create({
         'Content-Type': 'multipart/form-data',
     },
 });
-

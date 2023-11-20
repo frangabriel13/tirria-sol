@@ -12,6 +12,8 @@ import Cart from './components/cart/Cart';
 import Tienda from './components/tienda/Tienda';  
 import Contact from './components/contact/Contact';
 
+
+
 function App() {
   const location = useLocation();
 
@@ -31,6 +33,7 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/contacto' element={<Contact />} />
+
       </Routes>
     </>
   );
