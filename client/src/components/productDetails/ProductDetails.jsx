@@ -130,7 +130,9 @@ const ProductDetail = ({ productId }) => {
   };
 
   const sortVariations = (variations) => {
-    return variations.sort((a, b) => {
+    const productVariations = variations.filter((variation) => variation.product.id === product.id);
+
+    return productVariations.sort((a, b) => {
       const sizeA = a.size ? a.size.name.toLowerCase() : '';
       const sizeB = b.size ? b.size.name.toLowerCase() : '';
       if (sizeA < sizeB) return -1;
