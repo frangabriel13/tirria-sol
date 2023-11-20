@@ -36,6 +36,13 @@ export const addProduct = (product) => async (dispatch) => {
     console.log(error);
   }
 };
+// Acción para realizar la búsqueda en el navbar
+export const searchProducts = (searchTerm) => {
+  return {
+    type: 'SEARCH_PRODUCTS_NAVBAR',
+    payload: searchTerm,
+  };
+};
 
 export const updateProduct = (payload) => async (dispatch) => {
   try {
@@ -59,4 +66,11 @@ export const deleteProduct = (id) => async (dispatch) => {
   } catch(error) {
     console.log(error);
   }
+};
+
+export const filterProducts = (categoryId) => {
+  return {
+    type: 'FILTER_PRODUCTS',
+    payload: categoryId,
+  };
 };

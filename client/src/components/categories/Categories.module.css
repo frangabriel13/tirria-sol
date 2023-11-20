@@ -1,0 +1,33 @@
+/* Categories.module.css */
+
+.categoriesContainer {
+  background-color: #f9457f;
+  padding: 16px;
+  border-radius: 8px;
+  width: 70%;
+  text-align: center;
+  margin: 5rem auto; /* Esto centrará el contenedor horizontalmente */
+  max-width: 40rem; /* Establece el ancho máximo para que sea responsive */
+}
+
+.categoryTitle {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.categorySelector {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff; /* Color de fondo para el select */
+}
+
+/* Añade reglas de estilo para hacerlo responsive en dispositivos más pequeños */
+@media (max-width: 768px) {
+  .categoriesContainer {
+    width: 90%; /* Cambia el ancho en dispositivos más pequeños */
+  }
+}
