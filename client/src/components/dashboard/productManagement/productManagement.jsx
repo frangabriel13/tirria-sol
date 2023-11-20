@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import s from "./ProductManagement.module.css";
+import s from "./productManagement.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { 
   getProducts, 
