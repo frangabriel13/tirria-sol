@@ -62,7 +62,7 @@ const cartReducer = (state = initialState, action) => {
     case 'REMOVE_FROM_CART':
       const productIdToRemove = action.payload;
       const updatedCartItems = state.cartItems.filter((item) => {
-        if (item.product.isVariable) {
+        if (item.product.isVariant) {
           // Si es un producto variable, verificar por selectedVariation.productId
           return item.selectedVariation.id !== productIdToRemove;
         } else {
@@ -85,7 +85,7 @@ const cartReducer = (state = initialState, action) => {
     case 'INCREMENT_QUANTITY':
       const productIdToIncrement = action.payload;
       const incrementedCartItems = state.cartItems.map((item) => {
-        if (item.product.isVariable) {
+        if (item.product.isVariant) {
           // Si es un producto variable, verificar por selectedVariation.id
           if (item.selectedVariation.id === productIdToIncrement) {
             return {
@@ -119,7 +119,7 @@ const cartReducer = (state = initialState, action) => {
     case 'DECREMENT_QUANTITY':
       const productIdToDecrement = action.payload;
       const decrementedCartItems = state.cartItems.map((item) => {
-        if (item.product.isVariable) {
+        if (item.product.isVariant) {
           // Si es un producto variable, verificar por selectedVariation.id
           if (item.selectedVariation.id === productIdToDecrement && item.quantity > 1) {
             return {
