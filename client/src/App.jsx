@@ -10,7 +10,6 @@ import ProductsByCategory from './components/productByCategory/ProductByCategory
 import Search from './components/search/Search';
 import Cart from './components/cart/Cart';
 import Tienda from './components/tienda/Tienda';
-import CreateUser from './components/createUser/CreateUser';
 
 function App() {
   const location = useLocation();
@@ -30,7 +29,6 @@ function App() {
         <Route path='/search' element={<Search />} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/tienda' element={<Tienda />} />
-        <Route path='/create' element={<CreateUser />} />
       </Routes>
     </>
   );
