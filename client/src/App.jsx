@@ -5,10 +5,11 @@ import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/navbar/Navbar';
 import Detail from './components/detail/Detail';
 import Login from './components/login/Login';
-import Categories from './components/categories/categories';
+import Categories from './components/categories/Categories';
 import ProductsByCategory from './components/productByCategory/ProductByCategory';
 import Search from './components/search/Search';
 import Cart from './components/cart/Cart';
+import Tienda from './components/tienda/Tienda';  
 
 function App() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function App() {
         <Route path='/categories/:categoryId' element={<ProductsByCategory/>} />
         <Route path='/search' element={<Search />} />
         <Route path='/cart' element={<Cart/>} />
+        <Route path='/tienda' element={<Tienda />} />
       </Routes>
     </>
   );

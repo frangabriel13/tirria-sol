@@ -4,20 +4,30 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #ffffff;
+  background-color: #d2d2d2;
   color: #dd0000;
   border-bottom: #000000 3px solid;
 }
 
+.cartCount {
+  background-color: #dd0000;
+  color: #ffffff;
+  border-radius: 50%; /* Cambiado a 50% para hacerlo más redondo */
+  font-size: 1.2rem; /* Ajustado el tamaño del texto */
+  padding: 0.3rem 0.5rem; /* Añadido espaciado alrededor del número */
+}
+
 /* Estilo del Logo */
 .logo img {
- width: 15rem;
+  width: 15rem;
 }
 
 /* Estilo del Menú de Navegación */
 .menu ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap; /* Permite que los elementos del menú se envuelvan en pantallas pequeñas */
+  justify-content: center; /* Centra los elementos del menú en pantallas pequeñas */
 }
 
 .menu li {
@@ -32,16 +42,44 @@
 }
 
 /* Estilo de las Redes Sociales */
+.redesociales {
+  display: flex;
+  align-items: center;
+}
+
 .redesociales a {
   color: #272727;
   font-size: 1.5rem;
+  margin-right: 10px; /* Espaciado entre los íconos de las redes sociales */
 }
 
 .redesociales a:hover {
-  color: #00aced; /* Cambia el color al pasar el ratón sobre las redes sociales */
+  color: #00aced;
+}
+
+/* Estilo del Icono del Carrito */
+.cart {
+  position: relative;
 }
 
 .icon {
   color: #000000;
+  font-size: 2rem;
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Cambia la dirección de los elementos a columna en pantallas pequeñas */
+    text-align: center; /* Centra el contenido en pantallas pequeñas */
+  }
+
+  .menu ul {
+    margin-top: 1rem; /* Añade espacio entre el logo y el menú en pantallas pequeñas */
+  }
+
+  .cart {
+    margin-top: 1rem; /* Añade espacio entre el menú y el carrito en pantallas pequeñas */
+  }
 }
 

@@ -34,18 +34,18 @@ const Info = () => {
     <h1 className={s.tittle}>
           <a
               className={`${s.buttonIg} ${s.tittle}`}
-              href="https://www.instagram.com/africamia_jeansoficial/"
+              href="https://www.instagram.com/sol_flores_md/"
               target="_blank"
               rel="noopener noreferrer"
               >
-                IG @africamia_jeansoficial
+                IG @sol_flores_md
           </a>
           <a
               className={`${s.buttonIg} ${s.tittle}`}
-              href="https://www.tiktok.com/@africa_miajeans?lang=es"
+              href="https://www.tiktok.com/@solflores.tirria"
               
               >
-                TikTok @africa_miajeans
+                TikTok @solflores.tirria
           </a>
 
      </h1>  
