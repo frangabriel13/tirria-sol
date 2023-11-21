@@ -19,9 +19,9 @@ export const calculateTotal = (product, quantity, variations, variationQuantitie
 
 export const randomPhoneNumber = () => {
   const phoneNumbers = [
-    '+541131514574',
-    '+541149472679',
-    '+541128311122',
+    '+541127386001',
+    '+541127386001',
+    '+541127386001',
   ];
   const randomNumber = Math.floor(Math.random() * phoneNumbers.length);
   return phoneNumbers[randomNumber];
