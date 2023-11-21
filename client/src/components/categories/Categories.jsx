@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 function Categories() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
-  console.log(categories)
   const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate(); // Inicializa useNavigate
 

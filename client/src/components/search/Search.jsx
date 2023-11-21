@@ -69,12 +69,12 @@ return (
             showResults && (
               <div ref={searchResultsRef} className={s.searchResults}>
                 {
-                  navbarSearchResults.length === 0 && (
+                  navbarSearchResults && navbarSearchResults.length === 0 && (
                     <div>no andaaaaaaaaa</div>
                   )
                 }
                 {
-                  navbarSearchResults.map((result) => (
+                  navbarSearchResults && navbarSearchResults.map((result) => (
                     <div
                       key={result.id}
                       className={s.resultItem}
@@ -86,7 +86,7 @@ return (
                   ))
                 }
                 {
-                  navbarSearchResults.length > 5 && (
+                  navbarSearchResults && navbarSearchResults.length > 5 && (
                     <div className={s.seeMore} onClick={handleSeeMoreClick}>
                       Ver más resultados
                     </div>
