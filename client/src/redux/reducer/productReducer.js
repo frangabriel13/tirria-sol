@@ -62,11 +62,11 @@ function productReducer(state = initialState, action) {
       case 'FILTER_PRODUCTS':
         const allProducts = state.allProducts;
         if (action.payload) {
-          console.log('Payload:', action.payload);
+          // console.log('Payload:', action.payload);
           const productFiltered = allProducts.filter((product) => {
             return product.categories.some((el) => el.id === parseInt(action.payload));
           });
-          console.log('Filtered Products:', productFiltered);
+          // console.log('Filtered Products:', productFiltered);
           return {
             ...state,
             products: productFiltered,
