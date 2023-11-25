@@ -38,6 +38,11 @@ function EditProductForm({ product, onCancelEdit }) {
     }
   }
 
+  const handleStockChange = (e) => {
+    setFormData({ ...formData, stock: e.target.value });
+  };
+
+  
   return(
     <div className={s.container}>
       <h3>Formulario de edición de producto</h3>
@@ -48,6 +53,15 @@ function EditProductForm({ product, onCancelEdit }) {
             name="name" 
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
+          />
+        </div>
+        <div className={s.input}>
+          <label htmlFor="stock">Stock:</label>
+          <input
+            type="number"
+            name="stock"
+            value={formData.stock}
+            onChange={handleStockChange}
           />
         </div>
         <div className={s.divInput}>
@@ -66,6 +80,7 @@ function EditProductForm({ product, onCancelEdit }) {
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
           />
         </div>
+        
         <div className={s.divInput}>
           <label htmlFor="categories">Categorías:</label>
           <select 

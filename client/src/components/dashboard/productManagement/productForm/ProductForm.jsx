@@ -91,6 +91,9 @@ function ProductForm({getProducts}) {
         if (!variation.sizeId || !variation.colorId) {
           newErrors.variations = "Si es variable, debe tener al menos una variación";
         }
+        if (!variation.stock || variation.stock <= 0) {
+          newErrors.variations = "El stock debe ser mayor que 0";
+        }
       });
     }
 
@@ -177,6 +180,10 @@ function ProductForm({getProducts}) {
     setFormData({ ...formData, categories: newSelectedCategories });
   };
 
+  const handleChangeStock = (e) => {
+    setFormData({ ...formData, stock: e.target.value });
+  };
+
   return (
     <div className={s.container}>
       <h2>Crear Producto</h2>
@@ -190,6 +197,16 @@ function ProductForm({getProducts}) {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
           />
           { errors.name && <p className={s.error}>{errors.name}</p> }
+        </div>
+        <div className={s.input}>
+          <label htmlFor="stock">Stock:</label>
+          <input
+            type="number"
+            name="stock"
+            value={formData.stock}
+            onChange={handleChangeStock}
+          />
+          {errors.stock && <p className={s.error}>{errors.stock}</p>}
         </div>
         <div className={s.input}>
           <label htmlFor="description">Descripción:</label>

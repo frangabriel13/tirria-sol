@@ -130,6 +130,15 @@ const handlePriceChange = (e, index) => {
   setFormData(updatedFormData);
 };
 
+const handleStockChange = (e, index) => {
+  const updatedVariations = [...combinedVariation];
+  updatedVariations[index] = {
+    ...updatedVariations[index],
+    stock: e.target.value,
+  };
+  setCombinedVariation(updatedVariations);
+};
+
 return(
   <div>
     <h2>Todas las variaciones</h2>
@@ -146,6 +155,15 @@ return(
                 placeholder="Precio"
                 value={variation.price || 0}
                 onChange={(e) => handlePriceChange(e, index)}
+              />
+               <label htmlFor="stock">Stock:</label>
+               <label htmlFor="stock">Stock:</label>
+              <input
+                type="number"
+                name="stock"
+                placeholder="Stock"
+                value={variation.stock || 0}
+                onChange={(e) => handleStockChange(e, index)}
               />
             </div>
           )
