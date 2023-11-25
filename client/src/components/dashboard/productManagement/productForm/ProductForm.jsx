@@ -88,7 +88,7 @@ function ProductForm({getProducts}) {
     }
     if (formData.isVariant && formData.variations.length > 0) {
       formData.variations.forEach((variation) => {
-        if (!variation.sizeId) {
+        if (!variation.sizeId || !variation.colorId) {
           newErrors.variations = "Si es variable, debe tener al menos una variación";
         }
       });
@@ -143,6 +143,25 @@ function ProductForm({getProducts}) {
   const handleRemoveSize = (sizeId) => {
     const newSelectedSizes = selectedSizes.filter((size) => size.id !== sizeId);
     setSelectedSizes(newSelectedSizes);
+  };
+
+  const handleSelectedColor = (e) => {
+    // const selectedColorId = e.target.value;
+    // if (!selectedColors.some((color) => color.id === selectedColorId)) {
+    //   setSelectedColors([...selectedColors, { id: selectedColorId }]);
+    // }
+    const colorId = e.target.value;
+    const colorName = e.target.options[e.target.selectedIndex].getAttribute("name");
+
+    if (colorId && !selectedColors.some((color) => color.id === colorId)) {
+      const color = { id: colorId, name: colorName };
+      setSelectedColors([...selectedColors, color]);
+    }
+  };
+
+  const handleRemoveColor = (colorId) => {
+    const newSelectedColors = selectedColors.filter((color) => color.id !== colorId);
+    setSelectedColors(newSelectedColors);
   };
 
   const handleChangeCategories = (e) => {
@@ -315,6 +334,41 @@ function ProductForm({getProducts}) {
                           <div className={s.divSize}>
                             <li key={el.id}>{el.name}</li>
                             <button type="button" onClick={() => handleRemoveSize(el.id)}>X</button>
+                          </div>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="color">Color:</label>
+                  <select
+                    name="color"
+                    value={selectedColorId}
+                    onChange={(e) => {
+                      setSelectedColorId(e.target.value);
+                      handleSelectedColor(e);
+                    }}
+                  >
+                    <option value="">Seleccionar</option>
+                    {
+                      colors.map((el) => (
+                        <option
+                          key={el.id}
+                          value={el.id}
+                          name={el.name}
+                        >{el.name}</option>
+                      ))
+                    }
+                  </select>
+                  <div className={s.input}>
+                    <h5 className={s.colorsSelected}>Colores seleccionados:</h5>
+                    <ul className={s.colorsSelectedList}>
+                      {
+                        selectedColors.map((el) => (
+                          <div className={s.divColor}>
+                            <li key={el.id}>{el.name}</li>
+                            <button type="button" onClick={() => handleRemoveColor(el.id)}>X</button>
                           </div>
                         ))
                       }
