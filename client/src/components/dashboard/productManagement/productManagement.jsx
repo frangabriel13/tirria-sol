@@ -173,6 +173,7 @@ const ProductManagement = () => {
                     <tr>
                       <th>ID</th>
                       <th>Talle</th>
+                      <th>Color</th>
                       <th>Precio</th>
                       <th>Habilitado</th>
                     </tr>
@@ -188,6 +189,7 @@ const ProductManagement = () => {
                           <tr key={el.id}>
                             <td>{el.id}</td>
                             <td>{el.size ? el.size.name : 'Sin tamaño'}</td>
+                            <td>{el.color ? el.color.name : 'Sin color'}</td>
                             <td>{el.price}</td>
                             <td>{el.available ? 'Sí' : 'No'}</td>
                             <td>
