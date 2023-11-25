@@ -17,7 +17,7 @@ const Variations = () => {
   });
   const [color, setColor] = useState({
     name: "",
-    code: "#000000",
+    hex: "#000000",
   });
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const Variations = () => {
     setColor({
       id: "",
       name: "",
-      code: "#000000",
+      hex: "#000000",
     });
   };
 
@@ -91,7 +91,7 @@ const Variations = () => {
     setColor({
       id: colorToUpdate.id,
       name: colorToUpdate.name,
-      code: colorToUpdate.code,
+      hex: colorToUpdate.hex,
     });
   };
 
@@ -100,13 +100,13 @@ const Variations = () => {
     await dispatch(updateColor({
       id: color.id,
       name: color.name,
-      code: color.code,
+      hex: color.hex,
     }));
     setEditMode(false);
     setColor({
       id: "",
       name: "",
-      code: "#000000",
+      hex: "#000000",
     });
   };
 
@@ -115,7 +115,7 @@ const Variations = () => {
     setColor({
       id: "",
       name: "",
-      code: "#000000",
+      hex: "#000000",
     });
   };
 
@@ -221,7 +221,7 @@ const Variations = () => {
                         <tr key={el.id}>
                           <td>{el.id}</td>
                           <td>{el.name}</td>
-                          <td>{el.code}</td>
+                          <td>{el.hex}</td>
                           <td>
                             <button onClick={() => handleEditColor(el.id)}>Editar</button>
                             <button onClick={() => handleDeleteColor(el.id)}>Eliminar</button>
@@ -239,8 +239,8 @@ const Variations = () => {
                         onChange={(e) => setColor({ ...color, name: e.target.value })}
                       />
                       <input type="color" placeholder="Código" 
-                        value={color.code}
-                        onChange={(e) => setColor({ ...color, code: e.target.value })}
+                        value={color.hex}
+                        onChange={(e) => setColor({ ...color, hex: e.target.value })}
                       />
                       <button
                         onClick={() => handleCancelEditColor()}
@@ -256,8 +256,8 @@ const Variations = () => {
                         onChange={(e) => setColor({ ...color, name: e.target.value })}  
                       />
                       <input type="color" placeholder="Código"
-                        value={color.code}
-                        onChange={(e) => setColor({ ...color, code: e.target.value })}
+                        value={color.hex}
+                        onChange={(e) => setColor({ ...color, hex: e.target.value })}
                       />
                       <button
                         onClick={(e) => handleAddColor(e)}
