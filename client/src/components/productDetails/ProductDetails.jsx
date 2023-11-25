@@ -53,6 +53,24 @@ const ProductDetail = ({ productId }) => {
     }
   };
 
+  // const handleDecrement = (variation) => {
+  //   const currentQuantity = variationQuantities[variation.id] || 0;
+  //   if (currentQuantity > 0) {
+  //     setVariationQuantities({
+  //       ...variationQuantities,
+  //       [variation.id]: currentQuantity - 1,
+  //     });
+  //   }
+  // };
+
+  // const handleIncrement = (variation) => {
+  //   const currentQuantity = variationQuantities[variation.id] || 0;
+  //   setVariationQuantities({
+  //     ...variationQuantities,
+  //     [variation.id]: currentQuantity + 1,
+  //   });
+  // };
+
   const handleDecrement = (variation) => {
     const currentQuantity = variationQuantities[variation.id] || 0;
     if (currentQuantity > 0) {
@@ -62,13 +80,15 @@ const ProductDetail = ({ productId }) => {
       });
     }
   };
-
+  
   const handleIncrement = (variation) => {
     const currentQuantity = variationQuantities[variation.id] || 0;
-    setVariationQuantities({
-      ...variationQuantities,
-      [variation.id]: currentQuantity + 1,
-    });
+    if (currentQuantity < variation.stock) {
+      setVariationQuantities({
+        ...variationQuantities,
+        [variation.id]: currentQuantity + 1,
+      });
+    }
   };
 
   const handleQuantityChange = (variationId, newQuantity) => {
@@ -137,6 +157,8 @@ const ProductDetail = ({ productId }) => {
       const sizeB = b.size ? b.size.name.toLowerCase() : '';
       if (sizeA < sizeB) return -1;
       if (sizeA > sizeB) return 1;
+      if (a.stock < b.stock) return -1; // Agrega esta línea para comparar el stock
+      if (a.stock > b.stock) return 1; // Agrega esta línea para comparar el stock
       return 0;
     });
   };
@@ -213,7 +235,7 @@ const ProductDetail = ({ productId }) => {
                   sortVariations(variations).map((variation) => (
                     <div className={s.divQuantity} key={variation.id}>
                       <p>{variation && variation.size.name}</p>
-                      
+                      <p>Stock: {variation.stock}</p> {/* Agrega esta línea para mostrar el stock */}
                       {
                         variation.available === true ?
                           <div className={s.btnQuantity}>
