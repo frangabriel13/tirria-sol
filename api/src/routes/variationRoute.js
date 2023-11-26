@@ -105,7 +105,7 @@ router.put('/:id', async (req, res) => {
       available,
       productId,
     });
-    await variation.setImages(images);
+    // await variation.setImages(images);
     res.status(200).json(variation);
   } catch(error) {
     res.status(500).json({ message: 'Internal server error', error });

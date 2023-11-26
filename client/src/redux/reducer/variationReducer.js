@@ -18,7 +18,16 @@ function variationReducer(state = initialState, action) {
     case 'UPDATE_VARIATION':
       return {
         ...state,
-      }
+        variations: state.variations.map((variation) => {
+          if (variation.id === action.payload.variationId) {
+            return {
+              ...variation,
+              stock: action.payload.newStock,
+            };
+          }
+          return variation;
+        }),
+      };
     case 'DELETE_VARIATION':
       return {
         ...state,
