@@ -18,28 +18,24 @@ const ProductDetail = ({ productId }) => {
   const [quantity, setQuantity] = useState(1);
   const [variationQuantities, setVariationQuantities] = useState({});
 
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [uniqueColors, setUniqueColors] = useState({});
 
   useEffect(() => {
     setLoading(true);
     dispatch(getProductById(productId))
       .then(() => {
         setLoading(false);
+        const uniqueColorsTemp = {};
+        product.variations.forEach((el) => {
+          uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
+        });
+        setUniqueColors(uniqueColorsTemp);
+        const defaultColor = Object.values(uniqueColorsTemp)[0];
+        setSelectedColor(defaultColor.id);
         dispatch(getVariations(productId));
       });
   }, [dispatch, productId]);
-  
-  // useEffect(() => {
-  //   setLoading(true); // Indica que se está cargando
-  //   dispatch(getProductById(productId))
-  //     .then(() => {
-  //       setLoading(false); // Indica que la carga ha finalizado
-  //       dispatch(getVariations(productId)); // Carga las variaciones
-  //     });
-  // }, [dispatch, productId]);
-
-  // useEffect(() => {
-  //   dispatch(getVariations(productId))
-  // }, []);
 
   if (loading) return <p>Cargando...</p>
 
@@ -129,8 +125,17 @@ const ProductDetail = ({ productId }) => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleColorChange = (colorId) => {
+    setSelectedColor(colorId);
+    setVariationQuantities({});
+  };
+
   const sortVariations = (variations) => {
-    const productVariations = variations.filter((variation) => variation.product.id === product.id);
+    let productVariations = variations.filter((variation) => variation.product.id === product.id);
+
+    if(selectedColor) {
+      productVariations = productVariations.filter((variation) => variation.colorId === selectedColor);
+    }
 
     return productVariations.sort((a, b) => {
       const sizeA = a.size ? a.size.name.toLowerCase() : '';
@@ -140,6 +145,8 @@ const ProductDetail = ({ productId }) => {
       return 0;
     });
   };
+
+  console.log(variations)
   
   return (
     <div className={s.divUni}>
@@ -208,6 +215,14 @@ const ProductDetail = ({ productId }) => {
                 </div>
               </div> : 
               <div className={s.divVariant}>
+                <h3>Seleccione el color:</h3>
+                <div className={s.divColors}>
+                  {
+                    Object.values(uniqueColors).map((color) => (
+                      <button key={color.id} onClick={() => handleColorChange(color.id)}>{color.name}</button>
+                    ))
+                  }
+                </div>
                 <h3>Seleccione la cantidad por talle:</h3>
                 {
                   sortVariations(variations).map((variation) => (
