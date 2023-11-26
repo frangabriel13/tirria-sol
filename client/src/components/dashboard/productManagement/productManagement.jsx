@@ -178,6 +178,7 @@ const ProductManagement = () => {
                       <th>Talle</th>
                       <th>Color</th>
                       <th>Precio</th>
+                      <th>Stock</th>
                       <th>Habilitado</th>
                     </tr>
                   </thead>
@@ -194,6 +195,7 @@ const ProductManagement = () => {
                             <td>{el.size ? el.size.name : 'Sin tamaño'}</td>
                             <td>{el.color ? el.color.name : 'Sin color'}</td>
                             <td>{el.price}</td>
+                            <td>{el.stock}</td>
                             <td>{el.available ? 'Sí' : 'No'}</td>
                             <td>
                               <button onClick={() => handleEditVariation(el.id)}>Editar</button>
