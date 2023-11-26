@@ -78,23 +78,24 @@ const Cart = ({productId}) => {
       .catch((error) => {
         // console.error('Error al actualizar variaciones:', error);
       });
-  //   // Crear un mensaje detallado con los elementos del carrito
-  //   const message = cartItems.map((item) => {
+    // Crear un mensaje detallado con los elementos del carrito
+    const message = cartItems.map((item) => {
        
-  //     const itemName = item.product.name;
-  //     const itemPrice = item.selectedVariation ? item.selectedVariation.price : item.product.price;
-  //     const itemQuantity = item.quantity;
-  //     const itemSize = item.selectedVariation ? ` - Talle: ${item.selectedVariation.size.name}` : ''; // Agrega el talle si está disponible
-  //     return `${itemName}${itemSize} - Precio: $${itemPrice} - Cantidad: ${itemQuantity}`;
-  // }).join('\n');
+      const itemName = item.product.name;
+      const itemPrice = item.selectedVariation ? item.selectedVariation.price : item.product.price;
+      const itemQuantity = item.quantity;
+      const itemSize = item.selectedVariation ? ` - Talle: ${item.selectedVariation.size.name}` : ''; // Agrega el talle si está disponible
+      const itemColor = item.selectedVariation ? ` - Color: ${item.selectedVariation.color.name}` : ''; // Agrega el color si está disponible
+      return `${itemName}${itemSize}${itemColor} - Precio: $${itemPrice} - Cantidad: ${itemQuantity}`;
+  }).join('\n');
 
-  //   // Generar el enlace de WhatsApp
-  //   const phoneNumber = randomPhoneNumber() // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
-  //   const whatsappMessage = encodeURIComponent(`¡Hola! Me gustaría realizar el siguiente pedido:\n\n${message}\n\nTotal: $${total}`);
-  //   const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
+    // Generar el enlace de WhatsApp
+    const phoneNumber = randomPhoneNumber() // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
+    const whatsappMessage = encodeURIComponent(`¡Hola! Me gustaría realizar el siguiente pedido:\n\n${message}\n\nTotal: $${total}`);
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
 
-  //   // Redireccionar a la URL de WhatsApp
-  //   window.location.href = whatsappURL;
+    // Redireccionar a la URL de WhatsApp
+    window.location.href = whatsappURL;
   };
  
 
@@ -115,6 +116,7 @@ const Cart = ({productId}) => {
                         <img src={item.product.images[0].url} alt={item.product.name} />
                         <p>Nombre: {item.product.name}</p>
                         <p>Talle: {item.selectedVariation ? item.selectedVariation.size.name : 'Único'}</p>
+                        <p>Color: {item.selectedVariation ? item.selectedVariation.color.name : 'Único'}</p>
                         <p>Precio: ${item.selectedVariation ? item.selectedVariation.price : item.product.price}</p>
                       </div>
                       <div className={s.canti}>
