@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Product, Variation, Category, Image } = require('../db');
+const { Product, Variation, Category, Image, Color } = require('../db');
 
 const router = Router();
 
@@ -46,6 +46,11 @@ router.get('/:id', async (req, res) => {
               as: 'images',
               attributes: ['id', 'url'],
             },
+            {
+              model: Color,
+              as: 'color',
+              attributes: ['id', 'name'],
+            }
           ],
         },
         {
