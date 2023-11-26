@@ -36,15 +36,39 @@ export const addVariation = (variation) => async (dispatch) => {
   }
 };
 
+//---------------------
+
+// export const updateVariation = async (payload) => {
+//   try {
+//     const { id, stock, imageId } = payload;
+
+//     // Actualizar Variation
+//     await Variation.update({ stock }, { where: { id } });
+
+//     // Si tienes la imagenId y deseas actualizar la relación
+//     if (imageId) {
+//       const variation = await Variation.findByPk(id);
+//       await variation.setImages([imageId]);
+//     }
+
+//     console.log('Variation actualizada correctamente.');
+//   } catch (error) {
+//     console.error('Error en la actualización de Variation:', error);
+//   }
+// };
+
+
 export const updateVariation = (payload) => async (dispatch) => {
+  console.log(payload);
   try {
-    const response = instance.put(`/variations/${payload.id}`, payload);
+    const response = await instance.put(`/variations/${payload.id}`, payload);
     dispatch({
       type: 'UPDATE_VARIATION',
       payload: response.data
-    })
-  } catch(error) {
-    console.log(error);
+    });
+  } catch (error) {
+    console.error('Error en la solicitud de actualización:', error);
+    console.error('Detalles del error:', error.response.data); // Agregado para mostrar detalles específicos del error
   }
 };
 
