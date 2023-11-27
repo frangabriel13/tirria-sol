@@ -3,13 +3,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, incrementQuantity, decrementQuantity, clearCart } from '../../redux/actions/cartActions';
 import s from './Cart.module.css';
 import { randomPhoneNumber } from '../../utils/helpers';
+import { updateVariation } from '../../redux/actions/variationActions';
+import { getProductById } from '../../redux/actions/productActions';
+import { getVariations } from '../../redux/actions/variationActions';
+import { useEffect, useState } from 'react';
 
-const Cart = () => {
+
+const Cart = ({productId}) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const product = useSelector((state) => state.product.productById);
+  const variations = useSelector((state) => state.variation.variations);
 
-  
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const [loading, setLoading] = useState(true);
+  const [editVariation, setEditVariation] = useState({});
+
   const total = useSelector((state) => state.cart.total);
+  
+
+  useEffect(() => {
+    setLoading(true);
+    dispatch(getProductById(productId))
+      .then(() => {
+        setLoading(false);
+        dispatch(getVariations(productId));
+      });
+  }, [dispatch, productId]);
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));
@@ -25,6 +44,40 @@ const Cart = () => {
 
 
   const handleWhatsAppClick = () => {
+
+    if (!cartItems || cartItems.length === 0) {
+      // console.error('No hay elementos en el carrito.');
+      return;
+    }
+  
+    // Utilizar async/await para manejar la asincronía
+    const updateVariationAsync = async (item) => {
+      // console.log('Item antes del error:', item);
+  
+      const variationId = item.selectedVariation.id;
+      const variation = variations.find((v) => v.id === variationId);
+  
+      if (variation) {
+        const newStock = Math.max(0, variation.stock - item.quantity);
+  
+        // Utilizar await para manejar la asincronía de setEditVariation
+        await setEditVariation({ ...variation, stock: newStock });
+  
+        // Despachar la acción después de que setEditVariation haya completado
+        dispatch(updateVariation({ id: variation.id, stock: newStock }));
+      } else {
+        // console.error(`No se encontró la variación para el producto: ${item.product.name}`);
+      }
+    };
+  
+    // Utilizar Promise.all para esperar a que todas las actualizaciones se completen
+    Promise.all(cartItems.map(updateVariationAsync))
+      .then(() => {
+        // console.log('Todas las actualizaciones completadas');
+      })
+      .catch((error) => {
+        // console.error('Error al actualizar variaciones:', error);
+      });
     // Crear un mensaje detallado con los elementos del carrito
     const message = cartItems.map((item) => {
        
@@ -32,7 +85,8 @@ const Cart = () => {
       const itemPrice = item.selectedVariation ? item.selectedVariation.price : item.product.price;
       const itemQuantity = item.quantity;
       const itemSize = item.selectedVariation ? ` - Talle: ${item.selectedVariation.size.name}` : ''; // Agrega el talle si está disponible
-      return `${itemName}${itemSize} - Precio: $${itemPrice} - Cantidad: ${itemQuantity}`;
+      const itemColor = item.selectedVariation ? ` - Color: ${item.selectedVariation.color.name}` : ''; // Agrega el color si está disponible
+      return `${itemName}${itemSize}${itemColor} - Precio: $${itemPrice} - Cantidad: ${itemQuantity}`;
   }).join('\n');
 
     // Generar el enlace de WhatsApp
@@ -62,6 +116,7 @@ const Cart = () => {
                         <img src={item.product.images[0].url} alt={item.product.name} />
                         <p>Nombre: {item.product.name}</p>
                         <p>Talle: {item.selectedVariation ? item.selectedVariation.size.name : 'Único'}</p>
+                        <p>Color: {item.selectedVariation ? item.selectedVariation.color.name : 'Único'}</p>
                         <p>Precio: ${item.selectedVariation ? item.selectedVariation.price : item.product.price}</p>
                       </div>
                       <div className={s.canti}>

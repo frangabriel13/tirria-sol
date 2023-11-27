@@ -36,12 +36,12 @@ export const updateColor = (color) => async (dispatch) => {
   }
 };
 
-export const deleteColor = (color) => async (dispatch) => {
+export const deleteColor = (id) => async (dispatch) => {
   try {
-    const response = await instance.delete(`/colors/${color.id}`);
+    const response = await instance.delete(`/colors/${id}`);
     dispatch({
       type: "DELETE_COLOR",
-      payload: response.data,
+      payload: id,
     });
   } catch(error) {
     console.log(error);

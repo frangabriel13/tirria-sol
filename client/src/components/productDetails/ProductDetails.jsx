@@ -18,6 +18,9 @@ const ProductDetail = ({ productId }) => {
   const [quantity, setQuantity] = useState(1);
   const [variationQuantities, setVariationQuantities] = useState({});
 
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [uniqueColors, setUniqueColors] = useState({});
+  const [activeColor, setActiveColor] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -26,20 +29,18 @@ const ProductDetail = ({ productId }) => {
         setLoading(false);
         dispatch(getVariations(productId));
       });
+      window.scrollTo(0, 0);
   }, [dispatch, productId]);
   
-  // useEffect(() => {
-  //   setLoading(true); // Indica que se está cargando
-  //   dispatch(getProductById(productId))
-  //     .then(() => {
-  //       setLoading(false); // Indica que la carga ha finalizado
-  //       dispatch(getVariations(productId)); // Carga las variaciones
-  //     });
-  // }, [dispatch, productId]);
-
-  // useEffect(() => {
-  //   dispatch(getVariations(productId))
-  // }, []);
+  useEffect(() => {
+    const uniqueColorsTemp = {};
+    product.variations.forEach((el) => {
+      uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
+    });
+    setUniqueColors(uniqueColorsTemp);
+    const defaultColor = Object.values(uniqueColorsTemp)[0];
+    setSelectedColor(defaultColor.id);
+  }, [product]);
 
   if (loading) return <p>Cargando...</p>
 
@@ -62,13 +63,15 @@ const ProductDetail = ({ productId }) => {
       });
     }
   };
-
+  
   const handleIncrement = (variation) => {
     const currentQuantity = variationQuantities[variation.id] || 0;
-    setVariationQuantities({
-      ...variationQuantities,
-      [variation.id]: currentQuantity + 1,
-    });
+    if (currentQuantity < variation.stock) {
+      setVariationQuantities({
+        ...variationQuantities,
+        [variation.id]: currentQuantity + 1,
+      });
+    }
   };
 
   const handleQuantityChange = (variationId, newQuantity) => {
@@ -129,16 +132,30 @@ const ProductDetail = ({ productId }) => {
     window.open(whatsappUrl, '_blank');
   };
 
+ 
+
   const sortVariations = (variations) => {
-    const productVariations = variations.filter((variation) => variation.product.id === product.id);
+    let productVariations = variations.filter((variation) => variation.product.id === product.id);
+
+    if(selectedColor) {
+      productVariations = productVariations.filter((variation) => variation.colorId === selectedColor);
+    }
 
     return productVariations.sort((a, b) => {
       const sizeA = a.size ? a.size.name.toLowerCase() : '';
       const sizeB = b.size ? b.size.name.toLowerCase() : '';
       if (sizeA < sizeB) return -1;
       if (sizeA > sizeB) return 1;
+      if (a.stock < b.stock) return -1; // Agrega esta línea para comparar el stock
+      if (a.stock > b.stock) return 1; // Agrega esta línea para comparar el stock
       return 0;
     });
+  };
+
+  const handleColorChange = (colorId) => {
+    setSelectedColor(colorId);
+    setActiveColor(colorId); // Actualiza el color activo
+    setVariationQuantities({});
   };
   
   return (
@@ -208,12 +225,24 @@ const ProductDetail = ({ productId }) => {
                 </div>
               </div> : 
               <div className={s.divVariant}>
+                <h3>Seleccione el color:</h3>
+                <div className={s.divColors}>
+                    {Object.values(uniqueColors).map((color) => (
+                      <button
+                        key={color.id}
+                        className={`${s.buttonColor} ${activeColor === color.id ? s.activeColor : ''}`}
+                        onClick={() => handleColorChange(color.id)}
+                      >
+                        {color.name}
+                      </button>
+                    ))}
+                  </div>
                 <h3>Seleccione la cantidad por talle:</h3>
                 {
                   sortVariations(variations).map((variation) => (
                     <div className={s.divQuantity} key={variation.id}>
                       <p>{variation && variation.size.name}</p>
-                      
+                      <p>Stock: {variation.stock}</p> {/* Agrega esta línea para mostrar el stock */}
                       {
                         variation.available === true ?
                           <div className={s.btnQuantity}>

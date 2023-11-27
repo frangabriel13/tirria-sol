@@ -28,6 +28,7 @@ const ProductManagement = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [editingVariation, setEditingVariation] = useState(null);
   const [newVariationPrice, setNewVariationPrice] = useState("");
+  const [newVariationStock, setNewVariationStock] = useState('');
   
   useEffect(() => {
     dispatch(getProducts());
@@ -74,6 +75,7 @@ const ProductManagement = () => {
       setEditingVariation(variationToEdit);
       // También establece el precio actual de la variación en el estado newVariationPrice
       setNewVariationPrice(variationToEdit.price.toString()); // Convierte el precio a una cadena
+      setNewVariationStock(variationToEdit.stock.toString());
     } else {
       console.error(`No se pudo encontrar la variación con ID ${variationId}`);
     }
@@ -86,6 +88,7 @@ const ProductManagement = () => {
       const updatedVariation = {
         ...editingVariation,
         price: parseFloat(newVariationPrice),
+        stock: parseInt(newVariationStock),
         available: editingVariation.available,
       };
   
@@ -173,7 +176,9 @@ const ProductManagement = () => {
                     <tr>
                       <th>ID</th>
                       <th>Talle</th>
+                      <th>Color</th>
                       <th>Precio</th>
+                      <th>Stock</th>
                       <th>Habilitado</th>
                     </tr>
                   </thead>
@@ -188,7 +193,9 @@ const ProductManagement = () => {
                           <tr key={el.id}>
                             <td>{el.id}</td>
                             <td>{el.size ? el.size.name : 'Sin tamaño'}</td>
+                            <td>{el.color ? el.color.name : 'Sin color'}</td>
                             <td>{el.price}</td>
+                            <td>{el.stock}</td>
                             <td>{el.available ? 'Sí' : 'No'}</td>
                             <td>
                               <button onClick={() => handleEditVariation(el.id)}>Editar</button>
@@ -201,41 +208,51 @@ const ProductManagement = () => {
               </div>
             )
           }
-          {
-            editingVariation &&
-          <div className={s.editVariationForm}>
-            <h3>Editar Variación</h3>
-            <form onSubmit={handleUpdateVariation}>
-              <div>
-                <label htmlFor="newVariationPrice">Nuevo Precio:</label>
-                <input
-                  type="text"
-                  id="newVariationPrice"
-                  value={newVariationPrice}
-                  onChange={(e) => setNewVariationPrice(e.target.value)}
-                />
+         {
+            editingVariation && (
+              <div className={s.editVariationForm}>
+                <h3>Editar Variación</h3>
+                <form onSubmit={handleUpdateVariation}>
+                  <div>
+                    <label htmlFor="newVariationPrice">Nuevo Precio:</label>
+                    <input
+                      type="text"
+                      id="newVariationPrice"
+                      value={newVariationPrice}
+                      onChange={(e) => setNewVariationPrice(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="newVariationStock">Nuevo Stock:</label> {/* Agrega esta línea para el campo de stock */}
+                    <input
+                      type="number"
+                      id="newVariationStock"
+                      value={newVariationStock}
+                      onChange={(e) => setNewVariationStock(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="availability">Habilitado</label>
+                    <input
+                      type="checkbox"
+                      id="available"
+                      checked={editingVariation.available}
+                      onChange={(e) => {
+                        const updatedVariation = {
+                          ...editingVariation,
+                          available: e.target.checked,
+                        };
+                        setEditingVariation(updatedVariation);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <button type="submit">Guardar</button>
+                    <button onClick={() => setEditingVariation(null)}>Cancelar</button>
+                  </div>
+                </form>
               </div>
-              <div>
-                <label htmlFor="availability">Habilitado</label>
-                <input
-                  type="checkbox"
-                  id="available"
-                  checked={editingVariation.available}
-                  onChange={(e) => {
-                    const updatedVariation = {
-                      ...editingVariation,
-                      available: e.target.checked,
-                    };
-                    setEditingVariation(updatedVariation);
-                  }}
-                />
-              </div>
-              <div>
-                <button type="submit">Guardar</button>
-                <button onClick={() => setEditingVariation(null)}>Cancelar</button>
-              </div>
-            </form>
-          </div>
+            )
           }
         </div>
       </div>

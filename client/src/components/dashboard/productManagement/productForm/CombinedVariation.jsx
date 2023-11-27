@@ -23,6 +23,8 @@ function createCombinedVariation() {
         newCombinedVariation.push({ 
           size: {id: size.id, name: size.name},  
           color: {id: color.id, name: color.name},
+          sizeId: size.id,
+          colorId: color.id,
           price: formData.price,
           stock: formData.stock,
           available: formData.available,
@@ -49,6 +51,7 @@ function createCombinedVariation() {
       newCombinedVariation.push({ 
         size: null, 
         color: {id: color.id, name: color.name},
+        colorId: color.id,
         price: formData.price,
         stock: formData.stock,
         available: formData.available,
@@ -120,10 +123,20 @@ const handlePriceChange = (e, index) => {
     variations: newCombinedVariation.map((variation, i) => ({
       ...variation,
       sizeId: selectedSizes[i] ? parseInt(selectedSizes[i].id, 10) : null,
+      colorId: selectedColors[i] ? parseInt(selectedColors[i].id, 10) : null,
       // sizeId: variation.size ? parseInt(variation.size.id, 10) : null,
     })),
   };
   setFormData(updatedFormData);
+};
+
+const handleStockChange = (e, index) => {
+  const updatedVariations = [...combinedVariation];
+  updatedVariations[index] = {
+    ...updatedVariations[index],
+    stock: e.target.value,
+  };
+  setCombinedVariation(updatedVariations);
 };
 
 return(
@@ -142,6 +155,15 @@ return(
                 placeholder="Precio"
                 value={variation.price || 0}
                 onChange={(e) => handlePriceChange(e, index)}
+              />
+               <label htmlFor="stock">Stock:</label>
+               <label htmlFor="stock">Stock:</label>
+              <input
+                type="number"
+                name="stock"
+                placeholder="Stock"
+                value={variation.stock || 0}
+                onChange={(e) => handleStockChange(e, index)}
               />
             </div>
           )
