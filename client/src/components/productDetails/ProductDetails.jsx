@@ -26,16 +26,19 @@ const ProductDetail = ({ productId }) => {
     dispatch(getProductById(productId))
       .then(() => {
         setLoading(false);
-        const uniqueColorsTemp = {};
-        product.variations.forEach((el) => {
-          uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
-        });
-        setUniqueColors(uniqueColorsTemp);
-        const defaultColor = Object.values(uniqueColorsTemp)[0];
-        setSelectedColor(defaultColor.id);
         dispatch(getVariations(productId));
       });
   }, [dispatch, productId]);
+  
+  useEffect(() => {
+    const uniqueColorsTemp = {};
+    product.variations.forEach((el) => {
+      uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
+    });
+    setUniqueColors(uniqueColorsTemp);
+    const defaultColor = Object.values(uniqueColorsTemp)[0];
+    setSelectedColor(defaultColor.id);
+  }, [product]);
 
   if (loading) return <p>Cargando...</p>
 
@@ -48,24 +51,6 @@ const ProductDetail = ({ productId }) => {
       setQuantity(quantity - 1);
     }
   };
-
-  // const handleDecrement = (variation) => {
-  //   const currentQuantity = variationQuantities[variation.id] || 0;
-  //   if (currentQuantity > 0) {
-  //     setVariationQuantities({
-  //       ...variationQuantities,
-  //       [variation.id]: currentQuantity - 1,
-  //     });
-  //   }
-  // };
-
-  // const handleIncrement = (variation) => {
-  //   const currentQuantity = variationQuantities[variation.id] || 0;
-  //   setVariationQuantities({
-  //     ...variationQuantities,
-  //     [variation.id]: currentQuantity + 1,
-  //   });
-  // };
 
   const handleDecrement = (variation) => {
     const currentQuantity = variationQuantities[variation.id] || 0;
