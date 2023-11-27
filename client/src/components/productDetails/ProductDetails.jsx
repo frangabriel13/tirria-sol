@@ -20,6 +20,7 @@ const ProductDetail = ({ productId }) => {
 
   const [selectedColor, setSelectedColor] = useState(null);
   const [uniqueColors, setUniqueColors] = useState({});
+  const [activeColor, setActiveColor] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +29,7 @@ const ProductDetail = ({ productId }) => {
         setLoading(false);
         dispatch(getVariations(productId));
       });
+      window.scrollTo(0, 0);
   }, [dispatch, productId]);
   
   useEffect(() => {
@@ -130,10 +132,7 @@ const ProductDetail = ({ productId }) => {
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleColorChange = (colorId) => {
-    setSelectedColor(colorId);
-    setVariationQuantities({});
-  };
+ 
 
   const sortVariations = (variations) => {
     let productVariations = variations.filter((variation) => variation.product.id === product.id);
@@ -153,7 +152,11 @@ const ProductDetail = ({ productId }) => {
     });
   };
 
-  console.log(variations)
+  const handleColorChange = (colorId) => {
+    setSelectedColor(colorId);
+    setActiveColor(colorId); // Actualiza el color activo
+    setVariationQuantities({});
+  };
   
   return (
     <div className={s.divUni}>
@@ -224,12 +227,16 @@ const ProductDetail = ({ productId }) => {
               <div className={s.divVariant}>
                 <h3>Seleccione el color:</h3>
                 <div className={s.divColors}>
-                  {
-                    Object.values(uniqueColors).map((color) => (
-                      <button key={color.id} onClick={() => handleColorChange(color.id)}>{color.name}</button>
-                    ))
-                  }
-                </div>
+                    {Object.values(uniqueColors).map((color) => (
+                      <button
+                        key={color.id}
+                        className={`${s.buttonColor} ${activeColor === color.id ? s.activeColor : ''}`}
+                        onClick={() => handleColorChange(color.id)}
+                      >
+                        {color.name}
+                      </button>
+                    ))}
+                  </div>
                 <h3>Seleccione la cantidad por talle:</h3>
                 {
                   sortVariations(variations).map((variation) => (

@@ -387,3 +387,36 @@
     padding: 1rem; /* Reduce el relleno */
   }
 }
+
+.divColor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+} 
+
+.buttonColor {
+  width: 4rem;
+  height: 3rem;
+  margin: 0.5rem;
+  border-radius: 10%;
+  border: solid .1rem #000000;
+  cursor: pointer;
+}
+
+.buttonColor:hover {
+  background-color: #f9457f;
+  color: #ffffff;
+  border: solid .1rem #f9457f;
+  transition: .3s;
+} 
+
+.buttonColor:active {
+  animation: clickAnimation 0.5s ease-in-out; /* Duración de la animación y easing */
+  transform: scale(0.95); /* Reducimos el tamaño del botón cuando se hace clic */
+} 
+
+.buttonColor.activeColor {
+  background-color: #010101; /* Cambia esto al color que desees */
+  color: #fff; /* Cambia esto al color de texto que desees */
+}
