@@ -32,14 +32,25 @@ const ProductDetail = ({ productId }) => {
       window.scrollTo(0, 0);
   }, [dispatch, productId]);
   
+  // useEffect(() => {
+  //   const uniqueColorsTemp = {};
+  //   product.variations.forEach((el) => {
+  //     uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
+  //   });
+  //   setUniqueColors(uniqueColorsTemp);
+  //   const defaultColor = Object.values(uniqueColorsTemp)[0];
+  //   setSelectedColor(defaultColor.id);
+  // }, [product]);
   useEffect(() => {
-    const uniqueColorsTemp = {};
-    product.variations.forEach((el) => {
-      uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
-    });
-    setUniqueColors(uniqueColorsTemp);
-    const defaultColor = Object.values(uniqueColorsTemp)[0];
-    setSelectedColor(defaultColor.id);
+    if (product && product.variations) {
+      const uniqueColorsTemp = {};
+      product.variations.forEach((el) => {
+        uniqueColorsTemp[el.color.name] = { id: el.color.id, name: el.color.name };
+      });
+      setUniqueColors(uniqueColorsTemp);
+      const defaultColor = Object.values(uniqueColorsTemp)[0];
+      setSelectedColor(defaultColor.id);
+    }
   }, [product]);
 
   if (loading) return <p>Cargando...</p>
