@@ -208,7 +208,7 @@ const ProductDetail = ({ productId }) => {
         </div>
         <div className={s.productoDetail}>
           <div className={s.continent}>
-            <h2 className={s.productoDetailName}>{product && product.name}</h2>
+          <h2 className={s.productoDetailName}>{product && product.name ? product.name : 'Cargando...'}</h2>
             <p className={s.productoDetailPrice}>${product.price}</p>
             {
               product.isVariant === false ? 
